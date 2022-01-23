@@ -1,4 +1,4 @@
-package model;
+package com.systemorderproducer.aplicatiton.configuration;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;

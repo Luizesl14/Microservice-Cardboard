@@ -1,7 +1,7 @@
 package com.systemorderproducer.insfrastructure.resource;
 
 
-import com.orderService.aplicatiton.dto.OpOsDto;
+import com.systemorderproducer.aplicatiton.dto.OpDto;
 import com.systemorderproducer.insfrastructure.service.OPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ public class OpResource {
     private OPService opService;
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<OpOsDto>> findAll(){
-       List<OpOsDto> response = this.opService.findAllOp();
+    public ResponseEntity<List<OpDto>> findAll(){
+       List<OpDto> response = this.opService.findAllOp();
       if(response.isEmpty()){
          return  ResponseEntity.notFound().build();
       }
@@ -28,17 +28,17 @@ public class OpResource {
     }
 
     @GetMapping(value = "/id/{id}")
-    public ResponseEntity<OpOsDto> findByid(@RequestParam Long opId){
+    public ResponseEntity<OpDto> findByid(@RequestParam Long opId){
         return ResponseEntity.status(HttpStatus.OK).body(this.opService.findIdOp(opId));
     }
 
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OpOsDto> save(@RequestBody OpOsDto opDto){
+    public ResponseEntity<OpDto> save(@RequestBody OpDto opDto){
         return ResponseEntity.status(HttpStatus.OK).body(this.opService.saveOp(opDto));
     }
 
     @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OpOsDto> uodate(@RequestBody OpOsDto opDto){
+    public ResponseEntity<OpDto> uodate(@RequestBody OpDto opDto){
         return ResponseEntity.status(HttpStatus.OK).body(this.opService.updateOP(opDto));
     }
 

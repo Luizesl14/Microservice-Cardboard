@@ -1,4 +1,4 @@
-package model;
+package com.systemorderservice.aplicatiton.configuration;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

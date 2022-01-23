@@ -1,4 +1,4 @@
-package com.orderService.aplicatiton.dto;
+package com.systemorderproducer.aplicatiton.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OpOsDto extends BoxOsDto {
+public class OpDto extends BoxDto {
 
     private Long id;
     private String identify;

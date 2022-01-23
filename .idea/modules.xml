@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/discovery/discovery.iml" filepath="$PROJECT_DIR$/discovery/discovery.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-controller/system-controller.iml" filepath="$PROJECT_DIR$/system-controller/system-controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/system-craft.iml" filepath="$PROJECT_DIR$/.idea/system-craft.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-order-producer/system-order-producer.iml" filepath="$PROJECT_DIR$/system-order-producer/system-order-producer.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-order-service/system-order-service.iml" filepath="$PROJECT_DIR$/system-order-service/system-order-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sytem-core/sytem-core.iml" filepath="$PROJECT_DIR$/sytem-core/sytem-core.iml" />
     </modules>
   </component>
 </project>

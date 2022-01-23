@@ -1,10 +1,10 @@
 package com.systemorderservice.insfrastructure.service;
 
+import com.systemorderservice.aplicatiton.configuration.GenericEntity_;
+import com.systemorderservice.aplicatiton.configuration.GenericObjectMapper;
 import com.systemorderservice.aplicatiton.dto.StatusOsTypeDto;
 import com.systemorderservice.domain.entity.StatusOsType;
 import com.systemorderservice.domain.repository.StatusOsRepository;
-import model.GenericEntity_;
-import model.GenericObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.orderService.aplicatiton.dto;
+package com.systemorderproducer.aplicatiton.dto;
 
 
 import lombok.Getter;

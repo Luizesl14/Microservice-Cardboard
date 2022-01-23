@@ -1,10 +1,10 @@
 package com.systemorderservice.insfrastructure.service;
 
 import com.orderService.aplicatiton.dto.OsOsDto;
+import com.systemorderservice.aplicatiton.configuration.GenericEntity_;
+import com.systemorderservice.aplicatiton.configuration.GenericObjectMapper;
 import com.systemorderservice.domain.entity.Os;
 import com.systemorderservice.domain.repository.OsRepository;
-import model.GenericEntity_;
-import model.GenericObjectMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,7 @@ public class OsService {
        Os newOs =  this.osRepository.save(this.mapper.mapTo(osDto, Os.class));
        Os serarchOs = this.osRepository.findById(osDto.getId()).orElseThrow(
                ()-> new RuntimeException("RDEM DE SERVICO - NOT FOUND"));
-        BeanUtils.copyProperties(newOs, serarchOs,GenericEntity_.ID, GenericEntity_.IDENTIFY,
+        BeanUtils.copyProperties(newOs, serarchOs, GenericEntity_.ID, GenericEntity_.IDENTIFY,
               GenericEntity_.CREATED_AT, GenericEntity_.DELIVERY_DATE);
         return this.mapper.mapTo(this.osRepository.save(newOs), OsOsDto.class) ;
 
