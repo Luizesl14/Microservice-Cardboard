@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="system-order-producer" />
+        <module name="sytem-core" />
         <module name="system-controller" />
         <module name="system-order-service" />
-        <module name="system-order-producer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -17,6 +18,7 @@
       <module name="system-craft" target="17" />
       <module name="system-order-producer" target="17" />
       <module name="system-order-service" target="17" />
+      <module name="sytem-core" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -25,6 +27,7 @@
       <module name="system-craft" options="-parameters" />
       <module name="system-order-producer" options="-parameters" />
       <module name="system-order-service" options="-parameters" />
+      <module name="sytem-core" options="-parameters" />
     </option>
   </component>
 </project>

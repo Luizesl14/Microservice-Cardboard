@@ -8,22 +8,20 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.system-order-service</groupId>
-    <artifactId>system-order-service</artifactId>
+    <groupId>com.sytem-core</groupId>
+    <artifactId>sytem-core</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>system-order-service</name>
-    <description>system-order-service</description>
+    <name>sytem-core</name>
+    <description>sytem-core</description>
     <properties>
         <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.sytem-core</groupId>
-            <artifactId>sytem-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
-
 
 </project>
