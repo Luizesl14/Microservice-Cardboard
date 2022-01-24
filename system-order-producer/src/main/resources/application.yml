@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: system-order-producer
+
+server:
+  port: 9091
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8771/eureka
+

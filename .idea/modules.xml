@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/discovery/discovery.iml" filepath="$PROJECT_DIR$/discovery/discovery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-controller/system-controller.iml" filepath="$PROJECT_DIR$/system-controller/system-controller.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/system-craft.iml" filepath="$PROJECT_DIR$/.idea/system-craft.iml" />
       <module fileurl="file://$PROJECT_DIR$/system-order-producer/system-order-producer.iml" filepath="$PROJECT_DIR$/system-order-producer/system-order-producer.iml" />
