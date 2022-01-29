@@ -1,4 +1,4 @@
-package com.orderService.domain.entity.enums;
+package com.systemorderproducer.domain.model.enums.boxType;
 
 public enum BoxType {
 

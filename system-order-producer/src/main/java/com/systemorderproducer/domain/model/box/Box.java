@@ -1,4 +1,4 @@
-package com.systemorderproducer.domain.entity;
+package com.systemorderproducer.domain.model.box;
 
 import lombok.Getter;
 import lombok.Setter;

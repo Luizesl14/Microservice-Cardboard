@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-public class OpDto extends BoxDto {
+public class OrderProducerDto extends BoxDto {
 
     private Long id;
     private String identify;
@@ -27,4 +27,7 @@ public class OpDto extends BoxDto {
     private String lecture;
 
 
+    public OrderProducerDto() {
+
+    }
 }

@@ -1,4 +1,4 @@
-package com.systemorderproducer.aplicatiton.configuration;
+package com.systemorderproducer.aplicatiton.core.configuration;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

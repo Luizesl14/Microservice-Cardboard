@@ -1,5 +1,6 @@
-package com.systemorderproducer.domain.entity;
+package com.systemorderproducer.domain.model.orderProducer;
 
+import com.systemorderproducer.domain.model.box.Box;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "ordem_servico")
-public class Op extends Box {
+public class OrderProducer extends Box {
 
     @Id
     @Column(name = "id")
@@ -59,15 +60,15 @@ public class Op extends Box {
     @Column(name = "lecturer")
     private String lecture;
 
-    public Op(int length, int width,
-              int height, int valueLenghtCalc,
-              int valueWidthCalc, int valueHeigthCalc,
-              int valueAbaSup, int valueAbaSub, Long id,
-              String identify, LocalDateTime createdAt,
-              int limtDeliveryDate, LocalDateTime deliveryDate,
-              String socialReason, String name, String cpf,
-              String cnpj, String address, String comments,
-              String boxType, String responsible, String lecture) {
+    public OrderProducer(int length, int width,
+                         int height, int valueLenghtCalc,
+                         int valueWidthCalc, int valueHeigthCalc,
+                         int valueAbaSup, int valueAbaSub, Long id,
+                         String identify, LocalDateTime createdAt,
+                         int limtDeliveryDate, LocalDateTime deliveryDate,
+                         String socialReason, String name, String cpf,
+                         String cnpj, String address, String comments,
+                         String boxType, String responsible, String lecture) {
         super(length, width, height, valueLenghtCalc,
                 valueWidthCalc, valueHeigthCalc,
                 valueAbaSup, valueAbaSub);
@@ -87,7 +88,7 @@ public class Op extends Box {
         this.lecture = lecture;
     }
 
-    public Op() {
+    public OrderProducer() {
 
     }
 }
