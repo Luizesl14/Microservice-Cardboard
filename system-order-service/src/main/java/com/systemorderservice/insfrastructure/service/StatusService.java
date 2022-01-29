@@ -3,7 +3,7 @@ package com.systemorderservice.insfrastructure.service;
 import com.systemorderservice.aplicatiton.core.configuration.GenericEntity_;
 import com.systemorderservice.aplicatiton.core.configuration.GenericObjectMapper;
 import com.systemorderservice.aplicatiton.dto.StatusOrderServiceTypeDto;
-import com.systemorderservice.domain.model.enums.StatusOrderServiceType;
+import com.systemorderservice.domain.model.StatusOrderServiceType;
 import com.systemorderservice.domain.objectValue.IService;
 import com.systemorderservice.domain.repository.StatusOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;

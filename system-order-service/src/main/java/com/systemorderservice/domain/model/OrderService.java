@@ -1,7 +1,7 @@
 package com.systemorderservice.domain.model;
 
-import com.orderService.domain.enums.BoxType;
-import com.systemorderservice.domain.model.enums.StatusOrderServiceType;
+
+import com.systemorderservice.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.systemorderservice.domain.model.enums;
+package com.systemorderservice.domain.model;
 
 
 import lombok.Getter;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class StatusOrderServiceType {
 
     @Id
-    @Column(name = "identify")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "identify")
