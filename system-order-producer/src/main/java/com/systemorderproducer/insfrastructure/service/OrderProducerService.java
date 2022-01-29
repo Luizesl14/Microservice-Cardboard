@@ -4,7 +4,7 @@ import com.systemorderproducer.aplicatiton.core.configuration.GenericEntity_;
 import com.systemorderproducer.aplicatiton.core.configuration.GenericObjectMapper;
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
 import com.systemorderproducer.domain.model.orderProducer.OrderProducer;
-import com.systemorderproducer.domain.services.iservices.IOrderProducerService;
+import com.systemorderproducer.domain.objectValue.IOPService;
 import com.systemorderproducer.insfrastructure.repositories.orderProducerRepository.IOrderProducerRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderProducerService implements IOrderProducerService {
+public class OrderProducerService implements IOPService {
 
     @Autowired
     private  GenericObjectMapper mapper;
@@ -36,12 +36,14 @@ public class OrderProducerService implements IOrderProducerService {
         return  this.mapper.mapTo(orderProducer.getId(), OrderProducerDto.class);
     }
 
-    public OrderProducerDto saveEntity(OrderProducerDto orderProducerDto){
+    public OrderProducerDto saveObject(Object obj){
+        OrderProducerDto orderProducerDto = this.mapper.mapTo(obj, OrderProducerDto.class);
         this.IOrderProducerRepository.save(this.mapper.mapTo(orderProducerDto, OrderProducer.class));
         return  this.bringByid(orderProducerDto.getId());
     }
 
-    public OrderProducerDto updateEntity(OrderProducerDto orderProducerDto){
+    public OrderProducerDto updateObject(Object obj){
+        OrderProducerDto orderProducerDto = this.mapper.mapTo(obj, OrderProducerDto.class);
        OrderProducer newOrderProducer =  this.IOrderProducerRepository.save(
                this.mapper.mapTo(orderProducerDto, OrderProducer.class));
        OrderProducer serarchOrderProducer = this.IOrderProducerRepository.findById(
@@ -56,7 +58,7 @@ public class OrderProducerService implements IOrderProducerService {
 
     }
 
-    public void deleteEntity(Long id){
+    public void deleteObject(Long id){
         this.IOrderProducerRepository.deleteById(id);
     }
 

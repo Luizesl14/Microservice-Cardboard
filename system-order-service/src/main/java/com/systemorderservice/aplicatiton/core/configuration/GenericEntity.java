@@ -1,4 +1,4 @@
-package com.systemorderservice.aplicatiton.configuration;
+package com.systemorderservice.aplicatiton.core.configuration;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

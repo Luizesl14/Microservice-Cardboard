@@ -1,6 +1,7 @@
-package com.systemorderservice.domain.entity;
+package com.systemorderservice.domain.model;
 
 import com.orderService.domain.enums.BoxType;
+import com.systemorderservice.domain.model.enums.StatusOrderServiceType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "ordem_servico")
-public class Os extends BoxOs {
+public class OrderService extends BoxOrderService {
 
 
     @Id
@@ -50,7 +51,7 @@ public class Os extends BoxOs {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "status_os_type_id")
-    private StatusOsType statusOsType;
+    private StatusOrderServiceType statusOrderServiceType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "box_type")
@@ -70,13 +71,13 @@ public class Os extends BoxOs {
     private boolean shippingForProduction;
 
 
-    public Os(int length, int width, int height,
-              int valueLenghtCalc, int valueWidthCalc,
-              int valueHeigthCalc, int valueAbaSup,
-              int valueAbaSub, String identify, int limtDeliveryDate, String socialReason,
-              String name, String cpf, String cnpj, String address,
-              String comments, BoxType boxType, StatusOsType statusOsType, String responsible, String lecture,
-              boolean payStatus, boolean shippingForProduction ) {
+    public OrderService(int length, int width, int height,
+                        int valueLenghtCalc, int valueWidthCalc,
+                        int valueHeigthCalc, int valueAbaSup,
+                        int valueAbaSub, String identify, int limtDeliveryDate, String socialReason,
+                        String name, String cpf, String cnpj, String address,
+                        String comments, BoxType boxType, StatusOrderServiceType statusOrderServiceType, String responsible, String lecture,
+                        boolean payStatus, boolean shippingForProduction ) {
         super(length, width, height, valueLenghtCalc, valueWidthCalc, valueHeigthCalc, valueAbaSup, valueAbaSub);
         this.identify = identify;
         this.createdAt = LocalDateTime.now();
@@ -89,14 +90,14 @@ public class Os extends BoxOs {
         this.address = address;
         this.comments = comments;
         this.boxType = boxType;
-        this.statusOsType = statusOsType;
+        this.statusOrderServiceType = statusOrderServiceType;
         this.responsible = responsible;
         this.lecture = lecture;
         this.payStatus = payStatus;
         this.shippingForProduction =  shippingForProduction;
     }
 
-    public Os() {
+    public OrderService() {
         super();
     }
 }

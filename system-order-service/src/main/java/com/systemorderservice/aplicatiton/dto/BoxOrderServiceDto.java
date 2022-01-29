@@ -1,13 +1,13 @@
-package com.orderService.aplicatiton.dto;
+package com.systemorderservice.aplicatiton.dto;
 
-
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class BoxOsDto {
-
+@Setter
+@AllArgsConstructor
+public class BoxOrderServiceDto {
     private int length;
     private int width;
     private int height;

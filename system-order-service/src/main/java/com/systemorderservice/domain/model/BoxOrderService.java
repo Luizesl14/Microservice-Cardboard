@@ -1,4 +1,4 @@
-package com.systemorderservice.domain.entity;
+package com.systemorderservice.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
-public class BoxOs {
+public class BoxOrderService {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
@@ -60,8 +60,8 @@ public class BoxOs {
     @Column(name = "dilated_abas_sub")
     private int diletedAbasSub;
 
-    public BoxOs(int length, int width, int height, int valueLenghtCalc,
-                 int valueWidthCalc, int valueHeigthCalc, int valueAbaSup, int valueAbaSub) {
+    public BoxOrderService(int length, int width, int height, int valueLenghtCalc,
+                           int valueWidthCalc, int valueHeigthCalc, int valueAbaSup, int valueAbaSub) {
         this.length = length;
         this.width = width;
         this.height = height;
@@ -79,6 +79,6 @@ public class BoxOs {
         this.diletedAbasSub = Math.floorDiv(dilatedLengthTwo, valueAbaSub);
     }
 
-    public BoxOs() {
+    public BoxOrderService() {
     }
 }

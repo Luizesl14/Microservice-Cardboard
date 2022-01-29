@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class StatusOsTypeDto {
+public class StatusOrderServiceTypeDto {
 
     private Long id;
     private String identify;

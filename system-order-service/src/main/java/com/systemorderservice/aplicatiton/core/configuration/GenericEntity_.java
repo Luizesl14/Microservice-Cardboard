@@ -1,4 +1,4 @@
-package com.systemorderservice.aplicatiton.configuration;
+package com.systemorderservice.aplicatiton.core.configuration;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;

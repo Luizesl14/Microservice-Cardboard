@@ -1,4 +1,4 @@
-package com.systemorderservice.domain.entity;
+package com.systemorderservice.domain.model.enums;
 
 
 import lombok.Getter;
@@ -13,9 +13,12 @@ import javax.persistence.Table;
 @Getter
 @Table(name ="status_os_type")
 @Entity
-public class StatusOsType {
+public class StatusOrderServiceType {
 
     @Id
+    @Column(name = "identify")
+    private Long id;
+
     @Column(name = "identify")
     private String identify;
 

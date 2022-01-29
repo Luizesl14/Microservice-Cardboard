@@ -2,7 +2,7 @@ package com.systemorderproducer.presentation.controller.orderProducerController;
 
 
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
-import com.systemorderproducer.domain.services.icontroller.IOrderProducerController;
+import com.systemorderproducer.domain.objectValue.IOPController;
 import com.systemorderproducer.insfrastructure.service.OrderProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/op")
-public class OrderProducerController implements IOrderProducerController {
+public class OrderProducerController implements IOPController {
 
     @Autowired
     private OrderProducerService orderProducerService;
@@ -35,19 +35,19 @@ public class OrderProducerController implements IOrderProducerController {
     @PostMapping(value = "/save",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderProducerDto> save(@RequestBody OrderProducerDto orderProducerDto){
-        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveEntity(orderProducerDto));
+    public ResponseEntity<OrderProducerDto> save(@RequestBody Object obj){
+        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveObject(obj));
     }
 
     @PutMapping(value = "/update",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderProducerDto> update(@RequestBody OrderProducerDto OrderProducerDto){
-        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.updateEntity(OrderProducerDto));
+    public ResponseEntity<OrderProducerDto> update(@RequestBody Object obj){
+        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.updateObject(obj));
     }
 
     public ResponseEntity delete(Long id) {
-        this.orderProducerService.deleteEntity(id);
+        this.orderProducerService.deleteObject(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
