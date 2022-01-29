@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/op")
+@RequestMapping(value = "/order-producer")
 public class OrderProducerController implements IOPController {
 
     @Autowired
@@ -27,9 +27,9 @@ public class OrderProducerController implements IOPController {
         return  ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.bringAll(page, pageSize));
     }
 
-    @GetMapping(value = "/id/{id}")
-    public ResponseEntity<OrderProducerDto> findById(@RequestParam Long opId){
-        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.bringByid(opId));
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderProducerDto> findById(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.bringByid(id));
     }
 
     @PostMapping(value = "/save",

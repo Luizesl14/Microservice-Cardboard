@@ -1,4 +1,4 @@
-package com.systemorderservice.insfrastructure.resource;
+package com.systemorderservice.presentation.controller;
 
 
 import com.systemorderservice.aplicatiton.dto.OrderServiceDto;

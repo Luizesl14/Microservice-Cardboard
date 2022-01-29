@@ -3,11 +3,10 @@ package com.systemorderservice.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.UUID;
 
 @Setter
 @Getter
@@ -16,11 +15,12 @@ import javax.persistence.Table;
 public class StatusOrderServiceType {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
     @Column(name = "identify")
-    private String identify;
+    private String identify = UUID.randomUUID().toString();
 
     @Column(name = "status_name")
     private String statusName;

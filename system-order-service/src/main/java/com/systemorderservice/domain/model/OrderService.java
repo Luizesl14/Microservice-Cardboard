@@ -4,9 +4,11 @@ package com.systemorderservice.domain.model;
 import com.systemorderservice.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,11 +18,13 @@ public class OrderService extends BoxOrderService {
 
 
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
-    @Column(name = "identify")
-    private String identify;
+
+    @Column(name = "identify", nullable = false)
+    private String identify = UUID.randomUUID().toString();
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

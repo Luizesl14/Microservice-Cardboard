@@ -3,11 +3,9 @@ package com.systemorderproducer.domain.model.orderProducer;
 import com.systemorderproducer.domain.model.box.Box;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -17,10 +15,11 @@ import java.time.LocalDateTime;
 public class OrderProducer extends Box {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     private Long id;
 
-    @Column(name = "identify")
+    @Column(name = "identify", nullable = false)
     private String identify;
 
     @Column(name = "created_at")

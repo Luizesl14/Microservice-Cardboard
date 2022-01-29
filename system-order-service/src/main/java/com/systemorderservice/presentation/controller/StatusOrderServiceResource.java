@@ -1,4 +1,4 @@
-package com.systemorderservice.insfrastructure.resource;
+package com.systemorderservice.presentation.controller;
 
 
 import com.systemorderservice.aplicatiton.dto.StatusOrderServiceTypeDto;
@@ -23,7 +23,7 @@ public class StatusOrderServiceResource implements IController {
     @Autowired
     private StatusService statusService;
 
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<Page<StatusOrderServiceTypeDto>> findAll(Integer page, Integer pageSize){
 
       if(this.statusService.bringAll(page, pageSize).isEmpty()){
@@ -32,8 +32,8 @@ public class StatusOrderServiceResource implements IController {
       return  ResponseEntity.status(HttpStatus.OK).body(this.statusService.bringAll(page, pageSize));
     }
 
-    @GetMapping(value = "/id/{id}")
-    public ResponseEntity<StatusOrderServiceTypeDto> findById(@RequestParam Long id){
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<StatusOrderServiceTypeDto> findById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(this.statusService.bringByid(id));
     }
 
