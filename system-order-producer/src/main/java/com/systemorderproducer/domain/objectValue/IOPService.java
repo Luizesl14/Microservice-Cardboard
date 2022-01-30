@@ -8,4 +8,5 @@ public interface IOPService<T> {
     T saveObject(T t);
     T updateObject(T t);
     void deleteObject(Long id);
+    T creatObject(T t);
 }

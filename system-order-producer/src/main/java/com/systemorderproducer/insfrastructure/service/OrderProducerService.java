@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 
 @Service
@@ -35,11 +34,11 @@ public class OrderProducerService implements IOPService {
     public OrderProducerDto bringByid(Long id){
         OrderProducer orderProducer = this.IOrderProducerRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(id ,"ORDEM DE SERVICO - NÃO ENCONTRADA"));
-        return  this.mapper.mapTo(orderProducer.getId(), OrderProducerDto.class);
+        return  this.mapper.mapTo(orderProducer, OrderProducerDto.class);
     }
 
     public OrderProducerDto saveObject(Object obj){
-        OrderProducer orderProducer = this.createNewOrderProducer(this.mapper.mapTo(obj, OrderProducer.class));
+        OrderProducer orderProducer = this.creatObject(obj);
         this.IOrderProducerRepository.save(orderProducer);
         return  this.bringByid(orderProducer.getId());
     }
@@ -54,7 +53,6 @@ public class OrderProducerService implements IOPService {
 
         BeanUtils.copyProperties(newOrderProducer, serarchOrderProducer,
                 GenericEntity_.ID,GenericEntity_.IDENTIFY, GenericEntity_.CREATED_AT,GenericEntity_.DELIVERY_DATE);
-
         return this.mapper.mapTo(
                 this.IOrderProducerRepository.save(newOrderProducer), OrderProducerDto.class);
 
@@ -64,20 +62,19 @@ public class OrderProducerService implements IOPService {
         this.IOrderProducerRepository.deleteById(id);
     }
 
-
-    public OrderProducer createNewOrderProducer(OrderProducer orderProducer){
+    public OrderProducer creatObject(Object obj) {
+        OrderProducer orderProducer = this.mapper.mapTo(obj, OrderProducer.class);
         orderProducer.setCreatedAt(LocalDateTime.now());
-        orderProducer.setDeliveryDate(LocalDateTime.now().plusDays(5));
-        orderProducer.setLimtDeliveryDate(LocalDateTime.now().plusDays(30));
-        orderProducer.setValueAbaSup(Math.floorDiv(orderProducer.getWidth(), 2));
-        orderProducer.setValueAbaSub(Math.floorDiv(orderProducer.getWidth(), 2));
-        orderProducer.setDilatedWidthOne(orderProducer.getLength() - orderProducer.getValueWidthCalc());
-        orderProducer.setDilatedLengthOne(orderProducer.getWidth() + orderProducer.getValueLenghtCalc());
-        orderProducer.setDilatedWidthTwo(orderProducer.getLength() - orderProducer.getValueWidthCalc());
-        orderProducer.setDilatedLengthTwo(orderProducer.getWidth() + orderProducer.getValueLenghtCalc());
-        orderProducer.setDilatedHeight(orderProducer.getHeight() + orderProducer.getValueHeigthCalc());
-        orderProducer.setDiletedAbasSup(Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
-        orderProducer.setDiletedAbasSub(Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
+        orderProducer.setDeliveryDate(LocalDateTime.now().plusDays(orderProducer.getLimtDeliveryDate()));
+        orderProducer.setDilatedLengthOne(orderProducer.getValueLengthCalc() + orderProducer.getLength());
+        orderProducer.setDilatedWidthOne(orderProducer.getValueWidthCalc() + orderProducer.getWidth());
+        orderProducer.setDilatedLengthTwo(orderProducer.getValueLengthCalc() + orderProducer.getLength());
+        orderProducer.setDilatedWidthTwo(orderProducer.getValueWidthCalc() - orderProducer.getWidth());
+        orderProducer.setDilatedHeight(orderProducer.getValueHeightCalc() + orderProducer.getHeight());
+        orderProducer.setDiletedAbasSup(orderProducer.getValueAbaSup() != null ? orderProducer.getValueAbaSup()
+                : Math.floorDiv(orderProducer.getDilatedWidthOne(), 2) );
+        orderProducer.setDiletedAbasSub(orderProducer.getValueAbaSup() != null ? orderProducer.getValueAbaSup()
+                : Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
         return orderProducer;
     }
 

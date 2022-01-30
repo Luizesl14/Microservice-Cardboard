@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    container_name: db-order-producer
+    environment:
+      POSTGRES_ROO_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTEGRES_DB: db-order-producer
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-order-producer/var/lib/system-order-producer
+
+volumes:
+  db-order-producer:
