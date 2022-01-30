@@ -9,53 +9,56 @@ import javax.persistence.Column;
 @Setter
 public class Box {
 
-    @Column(name = "internal_length")
-    private int length;
+    @Column(name = "length")
+    private Integer length;
 
-    @Column(name = "internal_width")
-    private int width;
+    @Column(name = "width")
+    private Integer width;
 
-    @Column(name = "internal_height")
-    private int height;
+    @Column(name = "height")
+    private Integer height;
 
     @Column(name = "value_lenght_calc")
-    private int valueLenghtCalc;
+    private Integer valueLenghtCalc;
 
     @Column(name = "value_width_calc")
-    private int valueWidthCalc;
+    private Integer valueWidthCalc;
 
     @Column(name = "value_heigth_calc")
-    private int valueHeigthCalc;
+    private Integer valueHeigthCalc;
 
     @Column(name = "value_aba_sup")
-    private int valueAbaSup;
+    private Integer valueAbaSup;
 
     @Column(name = "value_aba_sub")
-    private int valueAbaSub;
+    private Integer valueAbaSub;
 
     @Column(name = "dilated_length_one")
-    private int dilatedLengthOne;
+    private Integer dilatedLengthOne;
 
     @Column(name = "dilated_width_one")
-    private int dilatedWidthOne;
+    private Integer dilatedWidthOne;
 
     @Column(name = "dilated_length_two")
-    private int dilatedLengthTwo;
+    private Integer dilatedLengthTwo;
 
     @Column(name = "dilated_width_two")
-    private int dilatedWidthTwo;
+    private Integer dilatedWidthTwo;
 
     @Column(name = "dilated_heigth")
-    private int dilatedHeight;
+    private Integer dilatedHeight;
 
     @Column(name = "dilated_abas_sup")
-    private int diletedAbasSup;
+    private Integer diletedAbasSup;
 
     @Column(name = "dilated_abas_sub")
-    private int diletedAbasSub;
+    private Integer diletedAbasSub;
 
-    public Box(int length, int width, int height, int valueLenghtCalc,
-               int valueWidthCalc, int valueHeigthCalc, int valueAbaSup, int valueAbaSub) {
+    public Box(Integer length, Integer width, Integer height, Integer valueLenghtCalc,
+               Integer valueWidthCalc, Integer valueHeigthCalc, Integer valueAbaSup,
+               Integer valueAbaSub, Integer dilatedLengthOne, Integer dilatedWidthOne,
+               Integer dilatedLengthTwo, Integer dilatedWidthTwo, Integer dilatedHeight,
+               Integer diletedAbasSup, Integer diletedAbasSub) {
         this.length = length;
         this.width = width;
         this.height = height;
@@ -64,16 +67,16 @@ public class Box {
         this.valueHeigthCalc = valueHeigthCalc;
         this.valueAbaSup = valueAbaSup;
         this.valueAbaSub = valueAbaSub;
-
-        this.dilatedLengthOne =  (length - valueHeigthCalc);
-        this.dilatedWidthOne  = (width + valueWidthCalc);
-        this.dilatedLengthTwo = (length + valueLenghtCalc);
-        this.dilatedWidthTwo = (width - valueWidthCalc);
-        this.diletedAbasSup = Math.floorDiv(dilatedLengthTwo, valueAbaSup);
-        this.diletedAbasSub = Math.floorDiv(dilatedLengthTwo, valueAbaSub);
+        this.dilatedLengthOne = dilatedLengthOne;
+        this.dilatedWidthOne = dilatedWidthOne;
+        this.dilatedLengthTwo = dilatedLengthTwo;
+        this.dilatedWidthTwo = dilatedWidthTwo;
+        this.dilatedHeight = dilatedHeight;
+        this.diletedAbasSup = diletedAbasSup;
+        this.diletedAbasSub = diletedAbasSub;
     }
 
     public Box() {
-
     }
+
 }

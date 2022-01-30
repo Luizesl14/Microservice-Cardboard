@@ -3,36 +3,36 @@ package com.systemorderproducer.domain.model.orderProducer;
 import com.systemorderproducer.domain.model.box.Box;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "ordem_servico")
+@Table(name = "tb_order_producer")
 public class OrderProducer extends Box {
 
+    private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "identify", nullable = false)
-    private String identify;
+    @Column(name = "identify")
+    private String identify = UUID.randomUUID().toString();
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "limit_delivery_date")
-    private int limtDeliveryDate;
+    private LocalDateTime limtDeliveryDate;
 
     @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
-    @Column(name = "social_reason")
-    private String socialReason;
+    @Column(name = "corporate_name")
+    private String corporateName;
 
     @Column(name = "name")
     private String name;
@@ -56,27 +56,27 @@ public class OrderProducer extends Box {
     @Column(name = "responsible")
     private String responsible;
 
-    @Column(name = "lecturer")
-    private String lecture;
+    @Column(name = "service_grantor")
+    private String serviceGrantor;
 
-    public OrderProducer(int length, int width,
-                         int height, int valueLenghtCalc,
-                         int valueWidthCalc, int valueHeigthCalc,
-                         int valueAbaSup, int valueAbaSub, Long id,
-                         String identify, LocalDateTime createdAt,
-                         int limtDeliveryDate, LocalDateTime deliveryDate,
-                         String socialReason, String name, String cpf,
-                         String cnpj, String address, String comments,
-                         String boxType, String responsible, String lecture) {
-        super(length, width, height, valueLenghtCalc,
-                valueWidthCalc, valueHeigthCalc,
-                valueAbaSup, valueAbaSub);
-        this.id = id;
-        this.identify = identify;
-        this.createdAt = createdAt;
-        this.limtDeliveryDate = limtDeliveryDate;
+    public OrderProducer(Integer length, Integer width, Integer height,
+                         Integer valueLenghtCalc, Integer valueWidthCalc,
+                         Integer valueHeigthCalc, Integer valueAbaSup,
+                         Integer valueAbaSub, Integer dilatedLengthOne,
+                         Integer dilatedWidthOne, Integer dilatedLengthTwo,
+                         Integer dilatedWidthTwo, Integer dilatedHeight,
+                         Integer diletedAbasSup, Integer diletedAbasSub, LocalDateTime deliveryDate,
+                         String corporateName, String name, String cpf, String cnpj,
+                         String address, String comments, String boxType,
+                         String responsible, String serviceGrantor)
+    {
+        super(length, width, height, valueLenghtCalc, valueWidthCalc,
+                valueHeigthCalc, valueAbaSup, valueAbaSub, dilatedLengthOne,
+                dilatedWidthOne, dilatedLengthTwo, dilatedWidthTwo, dilatedHeight,
+                diletedAbasSup, diletedAbasSub);
+
         this.deliveryDate = deliveryDate;
-        this.socialReason = socialReason;
+        this.corporateName = corporateName;
         this.name = name;
         this.cpf = cpf;
         this.cnpj = cnpj;
@@ -84,10 +84,9 @@ public class OrderProducer extends Box {
         this.comments = comments;
         this.boxType = boxType;
         this.responsible = responsible;
-        this.lecture = lecture;
+        this.serviceGrantor = serviceGrantor;
     }
 
     public OrderProducer() {
-
     }
 }

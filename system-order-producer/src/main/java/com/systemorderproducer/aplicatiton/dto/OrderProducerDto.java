@@ -1,6 +1,5 @@
 package com.systemorderproducer.aplicatiton.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,15 +7,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class OrderProducerDto extends BoxDto {
+public class OrderProducerDto{
 
     private Long id;
     private String identify;
     private LocalDateTime createdAt;
-    private int limtDeliveryDate;
+    private LocalDateTime limtDeliveryDate;
     private LocalDateTime deliveryDate;
-    private String socialReason;
+    private String corporateName;
     private String name;
     private String cpf;
     private String cnpj;
@@ -24,10 +22,23 @@ public class OrderProducerDto extends BoxDto {
     private String comments;
     private String boxType;
     private String responsible;
-    private String lecture;
+    private String serviceGrantor;
+
+    private int length;
+    private int width;
+    private int height;
+    private int valueLenghtCalc;
+    private int valueWidthCalc;
+    private int valueHeigthCalc;
+    private int valueAbaSup;
+    private int valueAbaSub;
+    private int dilatedLengthOne;
+    private int dilatedWidthOne;
+    private int dilatedLengthTwo;
+    private int dilatedWidthTwo;
+    private int dilatedHeight;
+    private int diletedAbasSup;
+    private int diletedAbasSub;
 
 
-    public OrderProducerDto() {
-
-    }
 }

@@ -14,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class OrderProducerService implements IOPService {
 
@@ -37,9 +39,9 @@ public class OrderProducerService implements IOPService {
     }
 
     public OrderProducerDto saveObject(Object obj){
-        OrderProducerDto orderProducerDto = this.mapper.mapTo(obj, OrderProducerDto.class);
-        this.IOrderProducerRepository.save(this.mapper.mapTo(orderProducerDto, OrderProducer.class));
-        return  this.bringByid(orderProducerDto.getId());
+        OrderProducer orderProducer = this.createNewOrderProducer(this.mapper.mapTo(obj, OrderProducer.class));
+        this.IOrderProducerRepository.save(orderProducer);
+        return  this.bringByid(orderProducer.getId());
     }
 
     public OrderProducerDto updateObject(Object obj){
@@ -60,6 +62,23 @@ public class OrderProducerService implements IOPService {
 
     public void deleteObject(Long id){
         this.IOrderProducerRepository.deleteById(id);
+    }
+
+
+    public OrderProducer createNewOrderProducer(OrderProducer orderProducer){
+        orderProducer.setCreatedAt(LocalDateTime.now());
+        orderProducer.setDeliveryDate(LocalDateTime.now().plusDays(5));
+        orderProducer.setLimtDeliveryDate(LocalDateTime.now().plusDays(30));
+        orderProducer.setValueAbaSup(Math.floorDiv(orderProducer.getWidth(), 2));
+        orderProducer.setValueAbaSub(Math.floorDiv(orderProducer.getWidth(), 2));
+        orderProducer.setDilatedWidthOne(orderProducer.getLength() - orderProducer.getValueWidthCalc());
+        orderProducer.setDilatedLengthOne(orderProducer.getWidth() + orderProducer.getValueLenghtCalc());
+        orderProducer.setDilatedWidthTwo(orderProducer.getLength() - orderProducer.getValueWidthCalc());
+        orderProducer.setDilatedLengthTwo(orderProducer.getWidth() + orderProducer.getValueLenghtCalc());
+        orderProducer.setDilatedHeight(orderProducer.getHeight() + orderProducer.getValueHeigthCalc());
+        orderProducer.setDiletedAbasSup(Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
+        orderProducer.setDiletedAbasSub(Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
+        return orderProducer;
     }
 
 

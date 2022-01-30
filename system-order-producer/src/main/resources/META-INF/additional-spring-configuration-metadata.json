@@ -1,8 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "eureka.h2.console.enabled",
-      "type": "java.lang.String",
-      "description": "Description for eureka.h2.console.enabled."
-  }
-] }
