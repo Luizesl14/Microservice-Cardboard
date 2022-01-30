@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    container_name: db-order-service
+    environment:
+      POSTGRES_ROO_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTEGRES_DB: db-order-service
+    ports:
+      - "5430:5430"
+    volumes:
+      - db-order-service/var/lib/system-order-service
+
+volumes:
+  db-order-producer:

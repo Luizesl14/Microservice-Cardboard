@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  db:
+    image: postgres
+    container_name: db-controller
+    environment:
+      POSTGRES_ROO_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTEGRES_DB: db-controller
+    ports:
+      - "5433:5433"
+    volumes:
+      - db-controller/var/lib/system-controller
+
+volumes:
+  db-order-producer:
