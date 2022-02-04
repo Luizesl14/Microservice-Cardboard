@@ -6,7 +6,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableEurekaClient
-@EnableJpaRepositories
 @SpringBootApplication
 public class SystemOrderServiceApplication {
 

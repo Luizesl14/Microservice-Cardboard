@@ -1,6 +1,7 @@
 package com.systemorderservice.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -10,27 +11,31 @@ import java.util.UUID;
 
 @Setter
 @Getter
-@Table(name ="status_os_type")
+@Table(name ="tb_order_status", schema = "public")
 @Entity
-public class StatusOrderServiceType {
+public class OrderStatus {
 
+    private static final long serialVersionUID = 1L;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
+    @Column(name= "id")
+    private Integer id;
 
     @Column(name = "identify")
     private String identify = UUID.randomUUID().toString();
 
-    @Column(name = "status_name")
-    private String statusName;
+    @Column(name = "statusname")
+    private String statusname;
 
-    @Column(name = "descriotion")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "hexa_color")
-    private String hexaColor;
+    @Column(name = "hexacolor")
+    private String hexacolor;
 
     @Column(name = "position")
-    private int position;
+    private Integer position;
 }

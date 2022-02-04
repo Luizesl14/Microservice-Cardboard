@@ -1,6 +1,7 @@
 package com.systemorderservice.domain.model;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.systemorderservice.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,15 +14,17 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "ordem_servico")
-public class OrderService extends BoxOrderService {
+@Table(name = "tb_order_service", schema = "public")
+public class OrderService{
+
+    private static final long serialVersionUID = 1L;
 
 
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
-    private Long id;
-
+    @Column(name= "id")
+    private Integer id;
 
     @Column(name = "identify", nullable = false)
     private String identify = UUID.randomUUID().toString();
@@ -30,13 +33,13 @@ public class OrderService extends BoxOrderService {
     private LocalDateTime createdAt;
 
     @Column(name = "limit_delivery_date")
-    private int limtDeliveryDate;
+    private Integer limtDeliveryDate;
 
     @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
-    @Column(name = "social_reason")
-    private String socialReason;
+    @Column(name = "corporate_name")
+    private String corporateName;
 
     @Column(name = "name")
     private String name;
@@ -54,54 +57,29 @@ public class OrderService extends BoxOrderService {
     private String comments;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_os_type_id")
-    private StatusOrderServiceType statusOrderServiceType;
+    @JoinColumn(name = "order_status_id")
+    private OrderStatus orderStatus;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "box_type")
     private BoxType boxType;
 
-
     @Column(name = "responsible")
     private String responsible;
 
-    @Column(name = "lecturer")
-    private String lecture;
+    @Column(name = "service_grantor")
+    private String serviceGrantor;
 
-    @Column(name = "pay_status")
-    private boolean payStatus;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id")
+    private Payment payment;
 
     @Column(name = "shipping_for_production")
     private boolean shippingForProduction;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "box_body_id")
+    private BoxBody boxBody;
 
-    public OrderService(int length, int width, int height,
-                        int valueLenghtCalc, int valueWidthCalc,
-                        int valueHeigthCalc, int valueAbaSup,
-                        int valueAbaSub, String identify, int limtDeliveryDate, String socialReason,
-                        String name, String cpf, String cnpj, String address,
-                        String comments, BoxType boxType, StatusOrderServiceType statusOrderServiceType, String responsible, String lecture,
-                        boolean payStatus, boolean shippingForProduction ) {
-        super(length, width, height, valueLenghtCalc, valueWidthCalc, valueHeigthCalc, valueAbaSup, valueAbaSub);
-        this.identify = identify;
-        this.createdAt = LocalDateTime.now();
-        this.limtDeliveryDate = limtDeliveryDate;
-        this.deliveryDate = (createdAt.plusDays(limtDeliveryDate));
-        this.socialReason = socialReason;
-        this.name = name;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
-        this.address = address;
-        this.comments = comments;
-        this.boxType = boxType;
-        this.statusOrderServiceType = statusOrderServiceType;
-        this.responsible = responsible;
-        this.lecture = lecture;
-        this.payStatus = payStatus;
-        this.shippingForProduction =  shippingForProduction;
-    }
 
-    public OrderService() {
-        super();
-    }
 }

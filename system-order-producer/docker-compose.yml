@@ -6,11 +6,10 @@ services:
     environment:
       POSTGRES_ROO_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTEGRES_DB: db-order-producer
+      POSTEGRES_DB: db-producer
     ports:
       - "5432:5432"
     volumes:
-      - db-order-producer/var/lib/system-order-producer
-
+      - db-producer/var/lib/postgres
 volumes:
-  db-order-producer:
+  db-producer:

@@ -3,7 +3,7 @@ package com.systemorderservice.insfrastructure.service;
 import com.systemorderservice.aplicatiton.core.configuration.GenericEntity_;
 import com.systemorderservice.aplicatiton.core.configuration.GenericObjectMapper;
 import com.systemorderservice.aplicatiton.dto.StatusOrderServiceTypeDto;
-import com.systemorderservice.domain.model.StatusOrderServiceType;
+import com.systemorderservice.domain.model.OrderStatus;
 import com.systemorderservice.domain.objectValue.IService;
 import com.systemorderservice.domain.repository.StatusOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;
@@ -32,14 +32,14 @@ public class StatusService implements IService {
     }
 
     public StatusOrderServiceTypeDto bringByid(Long id){
-        StatusOrderServiceType status = this.statusOrderServiceRepository.findById(id)
+        OrderStatus status = this.statusOrderServiceRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(id,"ORDEM DE SERVICO - NOT FOUND"));
         return  this.mapper.mapTo(status, StatusOrderServiceTypeDto.class);
     }
 
     public StatusOrderServiceTypeDto saveObject(Object obj){
         StatusOrderServiceTypeDto statusDto =  this.mapper.mapTo(obj, StatusOrderServiceTypeDto.class);
-        StatusOrderServiceType newStatus =  this.mapper.mapTo(statusDto, StatusOrderServiceType.class );
+        OrderStatus newStatus =  this.mapper.mapTo(statusDto, OrderStatus.class );
 
         return this.mapper.mapTo(
                 this.statusOrderServiceRepository.save(newStatus), StatusOrderServiceTypeDto.class);
@@ -47,9 +47,9 @@ public class StatusService implements IService {
 
     public StatusOrderServiceTypeDto updateObject(Object obj){
         StatusOrderServiceTypeDto statusDto =  this.mapper.mapTo(obj, StatusOrderServiceTypeDto.class);
-        StatusOrderServiceType newStatus =  this.statusOrderServiceRepository.save(this.mapper.mapTo(statusDto, StatusOrderServiceType.class));
+        OrderStatus newStatus =  this.statusOrderServiceRepository.save(this.mapper.mapTo(statusDto, OrderStatus.class));
 
-        StatusOrderServiceType serarchStatus = this.statusOrderServiceRepository.findById(statusDto.getId()).orElseThrow(
+        OrderStatus serarchStatus = this.statusOrderServiceRepository.findById(statusDto.getId()).orElseThrow(
                ()-> new ObjectNotFoundException(statusDto.getId(), "ORDEM DE SERVICO - NOT FOUND")
        );
 

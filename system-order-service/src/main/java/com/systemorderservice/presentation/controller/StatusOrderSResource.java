@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/status-os")
 @RequiredArgsConstructor(onConstructor = @___(@Autowired))
 @AllArgsConstructor
-public class StatusOrderServiceResource implements IController {
+public class StatusOrderSResource implements IController {
 
 
     @Autowired
