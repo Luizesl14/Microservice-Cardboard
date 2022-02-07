@@ -32,9 +32,8 @@ public class OrderProducerController implements IOPController {
         return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.bringByid(id));
     }
 
-    @PostMapping(value = "/save",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+                produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderProducerDto> save(@RequestBody Object obj){
         return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveObject(obj));
     }

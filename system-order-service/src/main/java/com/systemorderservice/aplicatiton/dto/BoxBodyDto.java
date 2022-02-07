@@ -6,8 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class BoxOrderServiceDto {
+public class BoxBodyDto {
     private int length;
     private int width;
     private int height;

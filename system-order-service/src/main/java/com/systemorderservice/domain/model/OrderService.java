@@ -81,5 +81,31 @@ public class OrderService{
     @JoinColumn(name = "box_body_id")
     private BoxBody boxBody;
 
+    public OrderService(){}
 
+    public OrderService(Integer id, String identify, LocalDateTime createdAt,
+                        Integer limtDeliveryDate, LocalDateTime deliveryDate,
+                        String corporateName, String name, String cpf, String cnpj,
+                        String address, String comments, OrderStatus orderStatus,
+                        BoxType boxType, String responsible, String serviceGrantor,
+                        Payment payment, boolean shippingForProduction, BoxBody boxBody) {
+        this.id = id;
+        this.identify = identify;
+        this.createdAt = createdAt;
+        this.limtDeliveryDate = limtDeliveryDate;
+        this.deliveryDate = deliveryDate;
+        this.corporateName = corporateName;
+        this.name = name;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.address = address;
+        this.comments = comments;
+        this.orderStatus = orderStatus;
+        this.boxType = boxType;
+        this.responsible = responsible;
+        this.serviceGrantor = serviceGrantor;
+        this.payment = payment;
+        this.shippingForProduction = shippingForProduction;
+        this.boxBody = boxBody;
+    }
 }

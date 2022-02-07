@@ -3,7 +3,7 @@ package com.systemorderservice.presentation.controller;
 
 import com.systemorderservice.aplicatiton.dto.OrderServiceDto;
 import com.systemorderservice.domain.objectValue.IController;
-import com.systemorderservice.insfrastructure.service.SOrderService;
+import com.systemorderservice.aplicatiton.core.service.SOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ public class OrderServiceController implements IController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<OrderServiceDto> findById(@RequestParam Long id){
+    public ResponseEntity<OrderServiceDto> findById(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(this.ServiceOrderService.bringByid(id));
     }
 
@@ -41,7 +41,7 @@ public class OrderServiceController implements IController {
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteObject(@RequestParam Long id){
+    public ResponseEntity<?> deleteObject(@RequestParam Integer id){
         this.ServiceOrderService.deleteObject(id);
         return  ResponseEntity.ok().build();
     }

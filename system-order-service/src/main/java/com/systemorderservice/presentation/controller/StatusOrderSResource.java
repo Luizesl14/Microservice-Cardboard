@@ -1,9 +1,9 @@
 package com.systemorderservice.presentation.controller;
 
 
-import com.systemorderservice.aplicatiton.dto.StatusOrderServiceTypeDto;
+import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
 import com.systemorderservice.domain.objectValue.IController;
-import com.systemorderservice.insfrastructure.service.StatusService;
+import com.systemorderservice.aplicatiton.core.service.StatusService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class StatusOrderSResource implements IController {
     private StatusService statusService;
 
     @GetMapping
-    public ResponseEntity<Page<StatusOrderServiceTypeDto>> findAll(Integer page, Integer pageSize){
+    public ResponseEntity<Page<OrderStatusDto>> findAll(Integer page, Integer pageSize){
 
       if(this.statusService.bringAll(page, pageSize).isEmpty()){
          return  ResponseEntity.notFound().build();
@@ -33,26 +33,26 @@ public class StatusOrderSResource implements IController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<StatusOrderServiceTypeDto> findById(@PathVariable Long id){
+    public ResponseEntity<OrderStatusDto> findById(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(this.statusService.bringByid(id));
     }
 
     @PostMapping(value = "/save",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StatusOrderServiceTypeDto> saveObject(@RequestBody Object obj){
+    public ResponseEntity<OrderStatusDto> saveObject(@RequestBody Object obj){
         return ResponseEntity.status(HttpStatus.OK).body(this.statusService.saveObject(obj));
     }
 
     @PutMapping(value = "/update",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StatusOrderServiceTypeDto> updateObject(@RequestBody Object obj){
+    public ResponseEntity<OrderStatusDto> updateObject(@RequestBody Object obj){
         return ResponseEntity.status(HttpStatus.OK).body(this.statusService.updateObject(obj));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteObject(@RequestParam Long id){
+    public ResponseEntity<?> deleteObject(@RequestParam Integer id){
         this.statusService.deleteObject(id);
         return  ResponseEntity.ok().build();
     }
