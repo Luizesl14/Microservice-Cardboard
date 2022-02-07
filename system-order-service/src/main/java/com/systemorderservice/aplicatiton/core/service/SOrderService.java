@@ -89,7 +89,7 @@ public class SOrderService implements IService {
     }
 
 
-    @Scheduled(fixedRate = MINUTO)
+    //@Scheduled(fixedRate = 3 * HORA)
     public void observableTrue(){
         List<OrderService> shippingTrue = this.IOrderServiceRepository.findOrderServiceBy();
         for (OrderService od : shippingTrue){
