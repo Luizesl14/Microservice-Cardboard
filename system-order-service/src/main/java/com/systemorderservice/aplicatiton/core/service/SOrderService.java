@@ -7,17 +7,14 @@ import com.systemorderservice.aplicatiton.dto.OrderServiceDto;
 import com.systemorderservice.domain.model.BoxBody;
 import com.systemorderservice.domain.model.OrderService;
 import com.systemorderservice.domain.objectValue.IService;
-import com.systemorderservice.domain.repository.IOrderServiceRepository;
+import com.systemorderservice.insfrastructure.repository.IOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

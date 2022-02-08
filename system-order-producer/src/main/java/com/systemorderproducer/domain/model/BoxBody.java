@@ -1,64 +1,25 @@
-package com.systemorderproducer.domain.model.orderProducer;
+package com.systemorderproducer.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_order_producer")
-public class OrderProducer{
+@Table(name = "tb_box_body", schema = "public")
+public class BoxBody {
+    private static final long serialVersionUID = 1L;
+
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "identify", nullable = false)
-    private String identify = UUID.randomUUID().toString();
-
-    @NotNull
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @NotNull
-    @Column(name = "limit_delivery_date")
-    private Integer limtDeliveryDate;
-
-    @Column(name = "delivery_date")
-    private LocalDateTime deliveryDate;
-
-    @Column(name = "corporate_name")
-    private String corporateName;
-
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "cpf")
-    private String cpf;
-
-    @Column(name = "cnpj")
-    private String cnpj;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "comments")
-    private String comments;
-
-    @Column(name = "box_type")
-    private String boxType;
-
-    @Column(name = "responsible")
-    private String responsible;
-
-    @NotNull
-    @Column(name = "service_grantor")
-    private String serviceGrantor;
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
+    @Column(name= "id")
+    private Integer id;
 
     @NotNull
     @Column(name = "length")

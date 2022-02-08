@@ -1,4 +1,4 @@
-package com.systemorderservice.domain.repository;
+package com.systemorderservice.insfrastructure.repository;
 
 import com.systemorderservice.domain.model.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;

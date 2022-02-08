@@ -1,7 +1,6 @@
-package com.systemorderservice.domain.model;
+package com.systemorderproducer.domain.model;
 
-
-import com.systemorderservice.domain.model.enums.BoxType;
+import com.systemorderproducer.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,11 +12,10 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_order_service", schema = "public")
-public class OrderService{
+@Table(name = "tb_order_producer")
+public class OrderProducer{
 
     private static final long serialVersionUID = 1L;
-
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -57,7 +55,7 @@ public class OrderService{
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_status_id")
-    private OrderStatus orderStatus;
+    private OrderStatusProducer orderStatusProducer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "box_type")
@@ -80,31 +78,4 @@ public class OrderService{
     @JoinColumn(name = "box_body_id")
     private BoxBody boxBody;
 
-    public OrderService(){}
-
-    public OrderService(Integer id, String identify, LocalDateTime createdAt,
-                        Integer limtDeliveryDate, LocalDateTime deliveryDate,
-                        String corporateName, String name, String cpf, String cnpj,
-                        String address, String comments, OrderStatus orderStatus,
-                        BoxType boxType, String responsible, String serviceGrantor,
-                        Payment payment, boolean shippingForProduction, BoxBody boxBody) {
-        this.id = id;
-        this.identify = identify;
-        this.createdAt = createdAt;
-        this.limtDeliveryDate = limtDeliveryDate;
-        this.deliveryDate = deliveryDate;
-        this.corporateName = corporateName;
-        this.name = name;
-        this.cpf = cpf;
-        this.cnpj = cnpj;
-        this.address = address;
-        this.comments = comments;
-        this.orderStatus = orderStatus;
-        this.boxType = boxType;
-        this.responsible = responsible;
-        this.serviceGrantor = serviceGrantor;
-        this.payment = payment;
-        this.shippingForProduction = shippingForProduction;
-        this.boxBody = boxBody;
-    }
 }

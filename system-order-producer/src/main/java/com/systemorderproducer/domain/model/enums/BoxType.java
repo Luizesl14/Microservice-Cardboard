@@ -1,4 +1,4 @@
-package com.systemorderproducer.domain.model.enums.boxType;
+package com.systemorderproducer.domain.model.enums;
 
 public enum BoxType {
 

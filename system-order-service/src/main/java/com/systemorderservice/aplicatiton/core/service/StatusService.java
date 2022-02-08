@@ -5,7 +5,7 @@ import com.systemorderservice.aplicatiton.core.configuration.GenericObjectMapper
 import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
 import com.systemorderservice.domain.model.OrderStatus;
 import com.systemorderservice.domain.objectValue.IService;
-import com.systemorderservice.domain.repository.StatusOrderServiceRepository;
+import com.systemorderservice.insfrastructure.repository.StatusOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

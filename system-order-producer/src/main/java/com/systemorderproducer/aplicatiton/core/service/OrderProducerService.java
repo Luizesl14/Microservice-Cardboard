@@ -1,11 +1,11 @@
-package com.systemorderproducer.insfrastructure.service;
+package com.systemorderproducer.aplicatiton.core.service;
 
 import com.systemorderproducer.aplicatiton.core.configuration.GenericEntity_;
 import com.systemorderproducer.aplicatiton.core.configuration.GenericObjectMapper;
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
-import com.systemorderproducer.domain.model.orderProducer.OrderProducer;
-import com.systemorderproducer.domain.objectValue.IOPService;
-import com.systemorderproducer.insfrastructure.repositories.orderProducerRepository.IOrderProducerRepository;
+import com.systemorderproducer.domain.model.OrderProducer;
+import com.systemorderproducer.domain.objectValue.IOrderProducerService;
+import com.systemorderproducer.insfrastructure.repositories.IOrderProducerRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class OrderProducerService implements IOPService {
+public class OrderProducerService implements IOrderProducerService {
 
     @Autowired
     private  GenericObjectMapper mapper;
@@ -31,7 +31,7 @@ public class OrderProducerService implements IOPService {
                         PageRequest.of(page,pageSize, Sort.by("id"))), OrderProducerDto.class);
     }
 
-    public OrderProducerDto bringByid(Long id){
+    public OrderProducerDto bringByid(Integer id){
         OrderProducer orderProducer = this.IOrderProducerRepository.findById(id)
                 .orElseThrow(()-> new ObjectNotFoundException(id ,"ORDEM DE SERVICO - NÃO ENCONTRADA"));
         return  this.mapper.mapTo(orderProducer, OrderProducerDto.class);
@@ -58,7 +58,7 @@ public class OrderProducerService implements IOPService {
 
     }
 
-    public void deleteObject(Long id){
+    public void deleteObject(Integer id){
         this.IOrderProducerRepository.deleteById(id);
     }
 
@@ -66,15 +66,6 @@ public class OrderProducerService implements IOPService {
         OrderProducer orderProducer = this.mapper.mapTo(obj, OrderProducer.class);
         orderProducer.setCreatedAt(LocalDateTime.now());
         orderProducer.setDeliveryDate(LocalDateTime.now().plusDays(orderProducer.getLimtDeliveryDate()));
-        orderProducer.setDilatedLengthOne(orderProducer.getValueLengthCalc() + orderProducer.getLength());
-        orderProducer.setDilatedWidthOne(orderProducer.getValueWidthCalc() + orderProducer.getWidth());
-        orderProducer.setDilatedLengthTwo(orderProducer.getValueLengthCalc() + orderProducer.getLength());
-        orderProducer.setDilatedWidthTwo(orderProducer.getValueWidthCalc() - orderProducer.getWidth());
-        orderProducer.setDilatedHeight(orderProducer.getValueHeightCalc() + orderProducer.getHeight());
-        orderProducer.setDiletedAbasSup(orderProducer.getValueAbaSup() != null ? orderProducer.getValueAbaSup()
-                : Math.floorDiv(orderProducer.getDilatedWidthOne(), 2) );
-        orderProducer.setDiletedAbasSub(orderProducer.getValueAbaSup() != null ? orderProducer.getValueAbaSup()
-                : Math.floorDiv(orderProducer.getDilatedWidthOne(), 2));
         return orderProducer;
     }
 

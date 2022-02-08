@@ -1,6 +1,9 @@
 package com.systemorderproducer.aplicatiton.dto;
 
-import lombok.AllArgsConstructor;
+import com.systemorderproducer.domain.model.enums.BoxType;
+import com.systemorderproducer.domain.model.BoxBody;
+import com.systemorderproducer.domain.model.OrderStatusProducer;
+import com.systemorderproducer.domain.model.Payment;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,11 +11,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class OrderProducerDto{
 
-
-    private Long id;
+    private Integer id;
     private String identify;
     private LocalDateTime createdAt;
     private Integer limtDeliveryDate;
@@ -23,27 +24,11 @@ public class OrderProducerDto{
     private String cnpj;
     private String address;
     private String comments;
-    private String boxType;
+    private OrderStatusProducer orderStatusProducer;
+    private BoxType boxType;
     private String responsible;
     private String serviceGrantor;
-    private Integer length;
-    private Integer width;
-    private Integer height;
-    private Integer valueLengthCalc;
-    private Integer valueWidthCalc;
-    private Integer valueHeightCalc;
-    private Integer valueAbaSup;
-    private Integer valueAbaSub;
-    private Integer dilatedLengthOne;
-    private Integer dilatedWidthOne;
-    private Integer dilatedLengthTwo;
-    private Integer dilatedWidthTwo;
-    private Integer dilatedHeight;
-    private Integer diletedAbasSup;
-    private Integer diletedAbasSub;
-
-
-    public OrderProducerDto() {
-
-    }
+    private Payment payment;
+    private boolean shippingForProduction;
+    private BoxBody boxBody;
 }

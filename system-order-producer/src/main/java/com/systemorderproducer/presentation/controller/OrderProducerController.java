@@ -1,9 +1,9 @@
-package com.systemorderproducer.presentation.controller.orderProducerController;
+package com.systemorderproducer.presentation.controller;
 
 
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
-import com.systemorderproducer.domain.objectValue.IOPController;
-import com.systemorderproducer.insfrastructure.service.OrderProducerService;
+import com.systemorderproducer.domain.objectValue.IOrderProducerController;
+import com.systemorderproducer.aplicatiton.core.service.OrderProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/order-producer")
-public class OrderProducerController implements IOPController {
+public class OrderProducerController implements IOrderProducerController {
 
     @Autowired
     private OrderProducerService orderProducerService;
@@ -28,7 +28,7 @@ public class OrderProducerController implements IOPController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderProducerDto> findById(@PathVariable Long id){
+    public ResponseEntity<OrderProducerDto> findById(@PathVariable Integer id){
         return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.bringByid(id));
     }
 
@@ -45,7 +45,7 @@ public class OrderProducerController implements IOPController {
         return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.updateObject(obj));
     }
 
-    public ResponseEntity delete(Long id) {
+    public ResponseEntity delete(Integer id) {
         this.orderProducerService.deleteObject(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
