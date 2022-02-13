@@ -1,11 +1,13 @@
 package com.systemorderservice.presentation.controller;
 
 
-import com.systemorderservice.aplicatiton.dto.OrderServiceDto;
-import com.systemorderservice.domain.objectValue.IController;
 import com.systemorderservice.aplicatiton.core.service.SOrderService;
+import com.systemorderservice.aplicatiton.dto.OrderServiceDto;
+import com.systemorderservice.domain.objectValue.IOrderServiceController;
+import com.systemorderservice.insfrastructure.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,13 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/order-service")
-public class OrderServiceController implements IController {
+public class OrderServiceController implements IOrderServiceController {
+
+    private static final String BUSCAR_TODOS ="BUSCAR TODOS";
+    private static final String BUSCAR_POR_ID ="BUSCAR POR ID";
+    private static final String SAVE ="SALVAR";
+    private static final String UPDATE ="UPDATE";
+    private static final String DELETE ="DELETE";
 
     @Autowired
     private SOrderService ServiceOrderService;

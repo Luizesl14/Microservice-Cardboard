@@ -5,6 +5,7 @@ import com.systemorderservice.aplicatiton.core.configuration.GenericObjectMapper
 import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
 import com.systemorderservice.domain.model.OrderStatus;
 import com.systemorderservice.domain.objectValue.IService;
+import com.systemorderservice.domain.objectValue.extend.IOrderService;
 import com.systemorderservice.insfrastructure.repository.StatusOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StatusService implements IService {
+public class StatusService implements IOrderService {
 
     @Autowired
     private GenericObjectMapper mapper;
@@ -62,9 +63,11 @@ public class StatusService implements IService {
         this.statusOrderServiceRepository.deleteById(id);
     }
 
+    @Override
     public boolean postObject(Object o) {
         return false;
     }
+
 
     @Override
     public Object creatObject(Object o) {

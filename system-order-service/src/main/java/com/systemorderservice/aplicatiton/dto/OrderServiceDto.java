@@ -1,18 +1,14 @@
 package com.systemorderservice.aplicatiton.dto;
 
-import com.systemorderservice.domain.model.BoxBody;
-import com.systemorderservice.domain.model.OrderStatus;
-import com.systemorderservice.domain.model.Payment;
-import com.systemorderservice.domain.model.enums.BoxType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.RepresentationModel;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-public class OrderServiceDto{
+@Data
+@EqualsAndHashCode(callSuper = false)
+public class OrderServiceDto extends RepresentationModel<OrderServiceDto> {
 
     private Integer id;
     private String identify;

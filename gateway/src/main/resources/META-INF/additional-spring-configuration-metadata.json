@@ -14,5 +14,10 @@
       "name": "cloud.gateway.discovery.locator.enabled",
       "type": "java.lang.String",
       "description": "Description for cloud.gateway.discovery.locator.enabled."
+    },
+    {
+      "name": "management.endpoints.web.exposure.include",
+      "type": "java.lang.String",
+      "description": "Description for management.endpoints.web.exposure.include."
     }
   ] }

@@ -2,8 +2,10 @@ package com.systemorderservice.presentation.controller;
 
 
 import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
-import com.systemorderservice.domain.objectValue.IController;
+import com.systemorderservice.domain.objectValue.IOrderServiceController;
+import com.systemorderservice.domain.objectValue.extend.IController;
 import com.systemorderservice.aplicatiton.core.service.StatusService;
+import com.systemorderservice.insfrastructure.http.Response;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/status-os")
 @RequiredArgsConstructor(onConstructor = @___(@Autowired))
 @AllArgsConstructor
-public class StatusOrderSResource implements IController {
+public class StatusOrderSResource implements IOrderServiceController {
 
 
     @Autowired
@@ -56,4 +58,5 @@ public class StatusOrderSResource implements IController {
         this.statusService.deleteObject(id);
         return  ResponseEntity.ok().build();
     }
+
 }
