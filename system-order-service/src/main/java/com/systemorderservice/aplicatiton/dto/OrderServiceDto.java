@@ -2,13 +2,14 @@ package com.systemorderservice.aplicatiton.dto;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.hateoas.RepresentationModel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
-public class OrderServiceDto extends RepresentationModel<OrderServiceDto> {
+@Getter
+@Setter
+public class OrderServiceDto{
 
     private Integer id;
     private String identify;

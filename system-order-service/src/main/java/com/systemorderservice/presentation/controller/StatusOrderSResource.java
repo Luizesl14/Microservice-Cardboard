@@ -3,9 +3,7 @@ package com.systemorderservice.presentation.controller;
 
 import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
 import com.systemorderservice.domain.objectValue.IOrderServiceController;
-import com.systemorderservice.domain.objectValue.extend.IController;
 import com.systemorderservice.aplicatiton.core.service.StatusService;
-import com.systemorderservice.insfrastructure.http.Response;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -8,9 +8,8 @@ services:
       POSTGRES_PASSWORD: 123
       POSTEGRES_DB: db-controller
     ports:
-      - "5433:5433"
+      - "5431:5432"
     volumes:
-      - db-controller/var/lib/system-controller
-
+      - db-controller/var/lib/postgres
 volumes:
-  db-order-producer:
+  db-controller:

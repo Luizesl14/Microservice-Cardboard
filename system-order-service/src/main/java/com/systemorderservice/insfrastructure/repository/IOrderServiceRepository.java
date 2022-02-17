@@ -12,4 +12,19 @@ public interface IOrderServiceRepository extends JpaRepository<OrderService,Inte
 
     @Query("Select od from OrderService od where od.shippingForProduction = true")
     List<OrderService> findOrderServiceBy();
+
+    @Query("Select od from OrderService od where od.orderStatus = 'ABERTO'")
+    Integer findAllQuantity();
+
+    @Query("Select od from OrderService od where od.orderStatus = 'PENDING'")
+    Integer findAllQuantityPending();
+
+    @Query("Select od from OrderService od where od.orderStatus = 'LOST'")
+    Integer findAllQuantityLost();
+
+    @Query("Select od from OrderService od where od.orderStatus = 'CLOSED'")
+    Integer findAllQuantityClosed();
+
+    @Query("Select od from OrderService od where od.orderStatus = 'ABERTO'")
+    Integer findAllQuantityService();
 }
