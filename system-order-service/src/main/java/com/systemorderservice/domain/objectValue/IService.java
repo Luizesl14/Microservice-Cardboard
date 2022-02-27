@@ -8,6 +8,5 @@ public interface IService<T> {
     T saveObject(T t);
     T updateObject(T t);
     void deleteObject(Integer id);
-    boolean postObject(T t);
     T creatObject(T t);
 }

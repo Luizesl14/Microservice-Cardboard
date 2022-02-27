@@ -7,15 +7,16 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 @Setter
 @Getter
 @Table(name ="tb_order_status", schema = "public")
 @Entity
-public class OrderStatus {
+public class OrderStatus implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialversionUID = 1L;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Id

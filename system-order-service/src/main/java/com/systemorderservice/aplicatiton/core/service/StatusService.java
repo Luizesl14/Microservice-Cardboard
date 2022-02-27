@@ -1,11 +1,10 @@
 package com.systemorderservice.aplicatiton.core.service;
 
-import com.systemorderservice.aplicatiton.core.configuration.GenericEntity_;
-import com.systemorderservice.aplicatiton.core.configuration.GenericObjectMapper;
+import com.systemorderservice.domain.shared.GenericEntity_;
+import com.systemorderservice.domain.shared.GenericObjectMapper;
 import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
 import com.systemorderservice.domain.model.OrderStatus;
-import com.systemorderservice.domain.objectValue.IService;
-import com.systemorderservice.domain.objectValue.extend.IOrderService;
+import com.systemorderservice.domain.objectValue.valueExtends.IOrderService;
 import com.systemorderservice.insfrastructure.repository.StatusOrderServiceRepository;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
@@ -61,11 +60,6 @@ public class StatusService implements IOrderService {
 
     public void deleteObject(Integer id){
         this.statusOrderServiceRepository.deleteById(id);
-    }
-
-    @Override
-    public boolean postObject(Object o) {
-        return false;
     }
 
 

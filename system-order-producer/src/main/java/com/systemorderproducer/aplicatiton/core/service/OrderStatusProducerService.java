@@ -1,7 +1,7 @@
 package com.systemorderproducer.aplicatiton.core.service;
 
-import com.systemorderproducer.aplicatiton.core.configuration.GenericEntity_;
-import com.systemorderproducer.aplicatiton.core.configuration.GenericObjectMapper;
+import com.systemorderproducer.domain.shared.GenericEntity_;
+import com.systemorderproducer.domain.shared.GenericObjectMapper;
 import com.systemorderproducer.aplicatiton.dto.OrderStatusDto;
 import com.systemorderproducer.domain.model.OrderProducer;
 import com.systemorderproducer.domain.model.OrderStatusProducer;

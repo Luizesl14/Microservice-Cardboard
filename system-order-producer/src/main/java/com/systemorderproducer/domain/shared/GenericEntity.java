@@ -1,4 +1,4 @@
-package com.systemorderproducer.aplicatiton.core.configuration;
+package com.systemorderproducer.domain.shared;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

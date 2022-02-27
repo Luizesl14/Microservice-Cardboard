@@ -1,6 +1,8 @@
 package com.systemorderservice.domain.model.enums;
 
-public enum BoxType {
+import java.io.Serializable;
+
+public enum BoxType{
 
     BOX_SIMPLE("Caixa Maleta"),
     BOX_CV("Caixa Corte Vinco"),

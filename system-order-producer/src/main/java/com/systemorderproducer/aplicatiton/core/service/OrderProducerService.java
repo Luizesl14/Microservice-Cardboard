@@ -1,7 +1,8 @@
 package com.systemorderproducer.aplicatiton.core.service;
 
-import com.systemorderproducer.aplicatiton.core.configuration.GenericEntity_;
-import com.systemorderproducer.aplicatiton.core.configuration.GenericObjectMapper;
+import com.google.gson.Gson;
+import com.systemorderproducer.domain.shared.GenericEntity_;
+import com.systemorderproducer.domain.shared.GenericObjectMapper;
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
 import com.systemorderproducer.domain.model.OrderProducer;
 import com.systemorderproducer.domain.objectValue.IOrderProducerService;
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class OrderProducerService implements IOrderProducerService {
@@ -37,10 +40,12 @@ public class OrderProducerService implements IOrderProducerService {
         return  this.mapper.mapTo(orderProducer, OrderProducerDto.class);
     }
 
-    public OrderProducerDto saveObject(Object obj){
+    @JmsListener(destination = "topc.mailbox")
+    public boolean saveObject(String order){
+        Object obj = new Gson().fromJson(order, Object.class);
         OrderProducer orderProducer = this.creatObject(obj);
         this.IOrderProducerRepository.save(orderProducer);
-        return  this.bringByid(orderProducer.getId());
+        return true;
     }
 
     public OrderProducerDto updateObject(Object obj){
@@ -65,7 +70,9 @@ public class OrderProducerService implements IOrderProducerService {
     public OrderProducer creatObject(Object obj) {
         OrderProducer orderProducer = this.mapper.mapTo(obj, OrderProducer.class);
         orderProducer.setCreatedAt(LocalDateTime.now());
-        orderProducer.setDeliveryDate(LocalDateTime.now().plusDays(orderProducer.getLimtDeliveryDate()));
+        orderProducer.setIdentify(UUID.randomUUID().toString());
+        orderProducer.setLimtDeliveryDate(15);
+        orderProducer.setDeliveryDate(orderProducer.getCreatedAt().plusDays(orderProducer.getLimtDeliveryDate()));
         return orderProducer;
     }
 

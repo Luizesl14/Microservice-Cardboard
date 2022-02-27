@@ -1,4 +1,4 @@
-package com.systemcontroller.aplicatiton.core.configuration;
+package com.systemcontroller.domain.shared;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;

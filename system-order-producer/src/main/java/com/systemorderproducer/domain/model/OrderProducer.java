@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -13,10 +14,8 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "tb_order_producer")
-public class OrderProducer{
-
-    private static final long serialVersionUID = 1L;
-
+public class OrderProducer implements Serializable{
+    private static final long serialversionUID = 1L;
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")

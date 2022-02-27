@@ -1,4 +1,4 @@
-package com.systemorderservice.domain.objectValue.extend;
+package com.systemorderservice.domain.objectValue.valueExtends;
 
 import org.springframework.http.ResponseEntity;
 

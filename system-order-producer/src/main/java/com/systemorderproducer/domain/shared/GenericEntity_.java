@@ -1,4 +1,4 @@
-package com.systemorderproducer.aplicatiton.core.configuration;
+package com.systemorderproducer.domain.shared;
 
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;

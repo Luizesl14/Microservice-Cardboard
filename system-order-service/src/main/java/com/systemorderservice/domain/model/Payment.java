@@ -7,15 +7,16 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "tb_payment", schema = "public")
-public class Payment {
+public class Payment implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialversionUID = 1L;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     @Id

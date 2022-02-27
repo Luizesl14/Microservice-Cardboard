@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -16,9 +17,9 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "tb_order_service", schema = "public")
-public class OrderService{
+public class OrderService implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialversionUID = 1L;
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -27,7 +28,7 @@ public class OrderService{
     private Integer id;
 
     @Column(name = "identify", nullable = false)
-    private String identify = UUID.randomUUID().toString();
+    private String identify;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -1,7 +1,7 @@
 package com.systemcontroller.aplicatiton.core.service;
 
-import com.systemcontroller.aplicatiton.core.configuration.GenericEntity_;
-import com.systemcontroller.aplicatiton.core.configuration.GenericObjectMapper;
+import com.systemcontroller.domain.shared.GenericEntity_;
+import com.systemcontroller.domain.shared.GenericObjectMapper;
 import com.systemcontroller.aplicatiton.dto.OrderDto;
 import com.systemcontroller.domain.model.Order;
 import com.systemcontroller.domain.objectValue.IOrderService;

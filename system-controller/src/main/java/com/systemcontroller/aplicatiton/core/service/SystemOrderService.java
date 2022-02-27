@@ -1,13 +1,12 @@
 package com.systemcontroller.aplicatiton.core.service;
 
-import com.systemcontroller.aplicatiton.core.configuration.GenericObjectMapper;
+import com.systemcontroller.domain.shared.GenericObjectMapper;
 import com.systemcontroller.aplicatiton.dto.OrderServiceDto;
 import com.systemcontroller.domain.objectValue.ISystemOrderServiceFeignClient;
 import com.systemcontroller.aplicatiton.dto.OrderDto;
 import com.systemcontroller.domain.model.Order;
 import com.systemcontroller.domain.objectValue.IControllerService;
 import com.systemcontroller.insfrastructure.http.OrderException;
-import com.systemcontroller.insfrastructure.repositories.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

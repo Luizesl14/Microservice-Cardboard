@@ -1,4 +1,4 @@
-package com.systemorderservice.aplicatiton.core.configuration;
+package com.systemorderproducer.domain.shared;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -57,4 +57,5 @@ public class GenericObjectMapper {
     public <D, T> Page<D> mapEntityPageIntoDtoPage(Page<T> entities, Class<D> dtoClass) {
         return entities.map(objectEntity -> modelMapper().map(objectEntity, dtoClass));
     }
+
 }

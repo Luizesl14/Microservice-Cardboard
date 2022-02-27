@@ -1,4 +1,4 @@
-package com.systemorderproducer.aplicatiton.core.configuration;
+package com.systemcontroller.domain.shared;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

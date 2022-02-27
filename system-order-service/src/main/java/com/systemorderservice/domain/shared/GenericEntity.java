@@ -1,4 +1,4 @@
-package com.systemcontroller.aplicatiton.core.configuration;
+package com.systemorderservice.domain.shared;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

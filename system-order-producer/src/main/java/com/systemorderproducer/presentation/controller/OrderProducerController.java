@@ -2,6 +2,7 @@ package com.systemorderproducer.presentation.controller;
 
 
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
+import com.systemorderproducer.domain.model.OrderProducer;
 import com.systemorderproducer.domain.objectValue.IOrderProducerController;
 import com.systemorderproducer.aplicatiton.core.service.OrderProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class OrderProducerController implements IOrderProducerController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderProducerDto> save(@RequestBody Object obj){
+    public ResponseEntity<?> save(@RequestBody String obj){
         return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveObject(obj));
     }
 

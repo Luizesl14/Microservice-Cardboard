@@ -11,7 +11,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class SystemOrderProducerApplication {
 
     public static void main(String[] args) {
+        System.setProperty("org.apache.activemq.SERIALIZABLE_PACKAGES","*");
         SpringApplication.run(SystemOrderProducerApplication.class, args);
+
     }
 
 }

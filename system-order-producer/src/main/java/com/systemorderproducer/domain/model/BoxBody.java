@@ -6,12 +6,13 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "tb_box_body", schema = "public")
-public class BoxBody {
+public class BoxBody implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
@@ -37,11 +38,10 @@ public class BoxBody {
     @Column(name = "value_length_calc")
     private Integer valueLengthCalc;
 
-    @NotNull
     @Column(name = "value_width_calc")
     private Integer valueWidthCalc;
 
-    @NotNull
+
     @Column(name = "value_height_calc")
     private Integer valueHeightCalc;
 

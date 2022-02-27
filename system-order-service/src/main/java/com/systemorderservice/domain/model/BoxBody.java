@@ -1,20 +1,19 @@
 package com.systemorderservice.domain.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "tb_box_body", schema = "public")
-public class BoxBody {
-    private static final long serialVersionUID = 1L;
-
+public class BoxBody implements Serializable {
+    private static final long serialversionUID = 1L;
 
     @Id
     @GeneratedValue(generator = "increment")

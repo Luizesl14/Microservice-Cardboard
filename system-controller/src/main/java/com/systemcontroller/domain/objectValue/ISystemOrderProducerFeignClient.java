@@ -1,6 +1,5 @@
 package com.systemcontroller.domain.objectValue;
 
-import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
