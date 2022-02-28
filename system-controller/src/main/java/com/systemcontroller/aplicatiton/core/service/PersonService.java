@@ -42,31 +42,20 @@ public class PersonService implements IOrderService {
 
     public PersonDto saveObject(Object obj){
         Person person = this.mapper.mapTo(obj, Person.class);
-        this.personRepository.save(person);
-        return this.bringByid(person.getId());
+        return this.mapper.mapTo(this.personRepository.save(person), PersonDto.class);
     }
 
     public PersonDto updateObject(Object obj){
-        PersonDto companyDto =  this.mapper.mapTo(obj, PersonDto.class);
-        Person newPerson =  this.personRepository.save(
-                this.mapper.mapTo(companyDto, Person.class));
-
-        Person serarchPerson = this.personRepository.findById(companyDto.getId())
-                .orElseThrow(()-> new PersonException(NO_FOUND_MSG, HttpStatus.NOT_FOUND));
-
-        BeanUtils.copyProperties(newPerson, serarchPerson, GenericEntity_.ID, GenericEntity_.IDENTIFY,
+        Person person =  this.mapper.mapTo(obj, Person.class);
+        Person serarchPerson = this.mapper.mapTo(this.bringByid(person.getId()), Person.class);
+        BeanUtils.copyProperties(person, serarchPerson, GenericEntity_.ID, GenericEntity_.IDENTIFY,
                 GenericEntity_.CREATED_AT, GenericEntity_.DELIVERY_DATE);
-
-        return this.mapper.mapTo(
-                this.personRepository.save(newPerson), PersonDto.class);
+        return this.mapper.mapTo(this.personRepository.save(person), PersonDto.class);
     }
 
     public void deleteObject(Integer id){
         this.personRepository.deleteById(id);
     }
 
-    public PersonDto creatOrderService(Integer id, Object obj) {
-        return null;
-    }
 
 }

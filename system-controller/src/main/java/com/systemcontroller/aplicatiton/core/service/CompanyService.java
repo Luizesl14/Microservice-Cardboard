@@ -42,8 +42,8 @@ public class CompanyService implements IOrderService {
 
     public CompanyDto saveObject(Object obj){
         Company company = this.mapper.mapTo(obj, Company.class);
-        this.companyRepository.save(company);
-        return this.bringByid(company.getId());
+        return this.mapper.mapTo(
+                this.companyRepository.save(company), CompanyDto.class);
     }
 
     public CompanyDto updateObject(Object obj){
@@ -65,8 +65,5 @@ public class CompanyService implements IOrderService {
         this.companyRepository.deleteById(id);
     }
 
-    public OrderDto creatOrderService(Integer id, Object obj) {
-        return null;
-    }
 
 }

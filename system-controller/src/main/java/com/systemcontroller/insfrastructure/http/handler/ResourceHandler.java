@@ -1,8 +1,6 @@
 package com.systemcontroller.insfrastructure.http.handler;
 
-import com.systemcontroller.insfrastructure.http.ErrorMapResponse;
-import com.systemcontroller.insfrastructure.http.ErrorResponse;
-import com.systemcontroller.insfrastructure.http.OrderException;
+import com.systemcontroller.insfrastructure.http.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -30,7 +28,7 @@ public class ResourceHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMap.build());
     }
 
-    @ExceptionHandler(OrderException.class)
+    @ExceptionHandler({OrderException.class, PersonException.class, CompanyException.class})
     public ResponseEntity<ErrorResponse> handlerException(OrderException m) {
         ErrorResponse.ErrorResponseBuilder error =  ErrorResponse.builder();
         error.httpStatus(m.getHttpStatus().value());

@@ -48,7 +48,7 @@ public class PersonController implements IController {
 
     @RolesAllowed({"user", "admin"})
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> delete(@RequestParam Integer id){
+    public ResponseEntity<?> delete(@PathVariable Integer id){
         this.personService.deleteObject(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
