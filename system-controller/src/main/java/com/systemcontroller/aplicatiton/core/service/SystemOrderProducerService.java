@@ -1,20 +1,14 @@
 package com.systemcontroller.aplicatiton.core.service;
 
-import com.systemcontroller.domain.shared.GenericObjectMapper;
-import com.systemcontroller.aplicatiton.dto.OrderDto;
-import com.systemcontroller.domain.model.Order;
-import com.systemcontroller.domain.objectValue.IControllerService;
+import com.systemcontroller.aplicatiton.dto.OrderProducerDto;
 import com.systemcontroller.domain.objectValue.ISystemOrderProducerFeignClient;
-import com.systemcontroller.insfrastructure.http.OrderException;
+import com.systemcontroller.domain.shared.GenericObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
-public class SystemOrderProducerService implements IControllerService {
+public class SystemOrderProducerService {
 
     @Autowired
     private GenericObjectMapper mapper;
@@ -23,37 +17,27 @@ public class SystemOrderProducerService implements IControllerService {
     private ISystemOrderProducerFeignClient orderProducerFeignClient;
 
 
-    public Page<OrderDto> bringAll(Integer page, Integer pageSize){
-        Page<Object> obj = this.orderProducerFeignClient.findAll(page,pageSize);
-        Optional.ofNullable(obj).orElseThrow(()-> new OrderException("Objeto não encontrado", HttpStatus.NOT_FOUND));
-        return this.mapper.mapEntityPageIntoDtoPage(obj, OrderDto.class);
+    public ResponseEntity<?> bringAll(Integer page, Integer pageSize){
+            return  this.orderProducerFeignClient.findAll(page,pageSize);
     }
 
-    public OrderDto bringByid(Integer id){
-        Object obj = this.orderProducerFeignClient.findById(id);
-        Optional.ofNullable(obj).orElseThrow(()-> new OrderException("Objeto não encontrado", HttpStatus.NOT_FOUND));
-        return  this.mapper.mapTo(obj, OrderDto.class);
+    public ResponseEntity<?> bringByid(Integer id){
+        return  this.orderProducerFeignClient.findById(id);
     }
 
-    public OrderDto saveObject(Object obj){
-        OrderDto orderDto = this.mapper.mapTo(obj, OrderDto.class);
-        this.orderProducerFeignClient.save(obj);
-        return this.bringByid(orderDto.getId());
+    public ResponseEntity<?> saveObject(OrderProducerDto orderProducerDto){
+        OrderProducerDto orderProducer = this.mapper.mapTo(orderProducerDto, OrderProducerDto.class);
+        return this.orderProducerFeignClient.save(orderProducer);
     }
 
-    public OrderDto updateObject(Object obj){
-        OrderDto orderDto = this.mapper.mapTo(obj, OrderDto.class);
-        this.orderProducerFeignClient.update(obj);
-        return this.bringByid(orderDto.getId());
+    public ResponseEntity<?> updateObject(OrderProducerDto orderProducerDto){
+        OrderProducerDto orderProducer = this.mapper.mapTo(orderProducerDto, OrderProducerDto.class);
+        return this.orderProducerFeignClient.update(orderProducer);
     }
 
     public void deleteObject(Integer id){
         this.orderProducerFeignClient.delete(id);
     }
 
-    public Order creatObject(Object obj) {
-        Order order = this.mapper.mapTo(obj, Order.class);
-        return order;
-    }
 
 }

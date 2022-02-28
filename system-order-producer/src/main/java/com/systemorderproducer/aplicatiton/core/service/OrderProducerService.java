@@ -1,6 +1,7 @@
 package com.systemorderproducer.aplicatiton.core.service;
 
 
+
 import com.google.gson.Gson;
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
 import com.systemorderproducer.domain.model.OrderProducer;
@@ -43,6 +44,12 @@ public class OrderProducerService implements IOrderProducerService {
         return  this.mapper.mapTo(orderProducer, OrderProducerDto.class);
     }
 
+
+    public OrderProducerDto saveOrder(OrderProducerDto orderProducerDto){
+        this.IOrderProducerRepository.save(this.creatObject(orderProducerDto));
+        return orderProducerDto;
+    }
+
     @JmsListener(destination = "topc.mailbox")
     public boolean saveObject(String order){
         Object obj = new Gson().fromJson(order, Object.class);
@@ -54,7 +61,7 @@ public class OrderProducerService implements IOrderProducerService {
     public OrderProducerDto updateObject(OrderProducerDto orderProducerDto){
        OrderProducer newOrderProducer = this.mapper.mapTo(orderProducerDto, OrderProducer.class);
        OrderProducer serarchOrderProducer =
-               this.mapper.mapTo(this.bringByid(newOrderProducer.getId()), OrderProducer.class);
+               this.mapper.mapTo(this.bringByid(orderProducerDto.getId()), OrderProducer.class);
 
         BeanUtils.copyProperties(newOrderProducer, serarchOrderProducer,
                 GenericEntity_.ID,GenericEntity_.IDENTIFY, GenericEntity_.CREATED_AT,GenericEntity_.DELIVERY_DATE);

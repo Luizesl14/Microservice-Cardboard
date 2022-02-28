@@ -35,8 +35,8 @@ public class OrderProducerController implements IOrderProducerController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
                 produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody String obj){
-        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveObject(obj));
+    public ResponseEntity<?> save(@RequestBody OrderProducerDto orderProducerDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.saveOrder(orderProducerDto));
     }
 
     @PutMapping(value = "/update",
