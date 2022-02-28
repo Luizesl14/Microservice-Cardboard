@@ -8,5 +8,4 @@ public interface IOrderService<T> {
     T saveObject(T t);
     T updateObject(T t);
     void deleteObject(Integer id);
-    T creatOrderService(Integer id, T t);
 }

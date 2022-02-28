@@ -1,5 +1,6 @@
 package com.systemcontroller.aplicatiton.dto;
 
+import com.systemcontroller.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class OrderServiceDto{
     private String address;
     private String comments;
     private OrderStatusDto orderStatus;
+    private BoxType boxType;
     private String responsible;
     private String serviceGrantor;
     private PaymentDto payment;

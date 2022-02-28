@@ -9,7 +9,7 @@ public class BoxBodyDto {
     private int length;
     private int width;
     private int height;
-    private int valueLenghtCalc;
+    private int valueLengthCalc;
     private int valueWidthCalc;
     private int valueHeigthCalc;
     private int valueAbaSup;

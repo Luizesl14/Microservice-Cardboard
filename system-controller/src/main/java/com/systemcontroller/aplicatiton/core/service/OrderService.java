@@ -1,10 +1,10 @@
 package com.systemcontroller.aplicatiton.core.service;
 
-import com.systemcontroller.domain.shared.GenericEntity_;
-import com.systemcontroller.domain.shared.GenericObjectMapper;
 import com.systemcontroller.aplicatiton.dto.OrderDto;
 import com.systemcontroller.domain.model.Order;
 import com.systemcontroller.domain.objectValue.IOrderService;
+import com.systemcontroller.domain.shared.GenericEntity_;
+import com.systemcontroller.domain.shared.GenericObjectMapper;
 import com.systemcontroller.insfrastructure.http.OrderException;
 import com.systemcontroller.insfrastructure.repositories.IOrderRepository;
 import org.springframework.beans.BeanUtils;
@@ -26,9 +26,6 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private IOrderRepository orderRepository;
-
-    @Autowired
-    private SystemOrderService orderService;
 
 
     public Page<OrderDto> bringAll(Integer page, Integer pageSize){
@@ -65,18 +62,6 @@ public class OrderService implements IOrderService {
 
     public void deleteObject(Integer id){
         this.orderRepository.deleteById(id);
-    }
-
-    public OrderDto creatOrderService(Integer id, Object obj) {
-        OrderDto orderDto = this.bringByid(id);
-
-        if(orderDto.getIsActive().equals(Boolean.TRUE)
-                && orderDto.getPayment().getApprovedPayment().equals(Boolean.TRUE) ){
-            this.orderService.saveObject(obj);
-        }else {
-           throw new OrderException("Pagamento em análise aguarde!", HttpStatus.BAD_REQUEST);
-        }
-        return orderDto;
     }
 
 }

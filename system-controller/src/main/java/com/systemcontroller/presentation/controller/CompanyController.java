@@ -53,8 +53,4 @@ public class CompanyController implements IController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @Override
-    public ResponseEntity<Object> createOrderService(Integer id, Object obj) {
-        return null;
-    }
 }

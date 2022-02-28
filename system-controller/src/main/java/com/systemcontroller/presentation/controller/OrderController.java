@@ -54,10 +54,4 @@ public class OrderController implements IController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    @RolesAllowed("admin")
-    @PostMapping(value = "/created-os", consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> createOrderService(Integer id, Object obj) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.orderService.creatOrderService(id, obj));
-    }
 }

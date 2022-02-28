@@ -52,10 +52,4 @@ public class PersonController implements IController {
         this.personService.deleteObject(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-    @RolesAllowed({"user", "admin"})
-    @Override
-    public ResponseEntity<Object> createOrderService(Integer id, Object obj) {
-        return null;
-    }
 }
