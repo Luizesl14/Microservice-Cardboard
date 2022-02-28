@@ -1,7 +1,9 @@
 package com.systemorderservice.aplicatiton.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.systemorderservice.domain.model.BoxBody;
+import com.systemorderservice.domain.model.OrderStatus;
+import com.systemorderservice.domain.model.Payment;
+import com.systemorderservice.domain.model.enums.BoxType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class OrderServiceDto{
+
 
     private Integer id;
     private String identify;
@@ -22,12 +25,13 @@ public class OrderServiceDto{
     private String cnpj;
     private String address;
     private String comments;
-    private OrderStatusDto orderStatus;
+    private OrderStatus orderStatus;
+    private BoxType boxType;
     private String responsible;
     private String serviceGrantor;
-    private PaymentDto payment;
+    private Payment payment;
     private boolean shippingForProduction;
-    private BoxBodyDto boxBody;
+    private BoxBody boxBody;
 
     public OrderServiceDto() {
     }

@@ -1,20 +1,23 @@
 package com.systemorderproducer.aplicatiton.core.service;
 
+
 import com.google.gson.Gson;
-import com.systemorderproducer.domain.shared.GenericEntity_;
-import com.systemorderproducer.domain.shared.GenericObjectMapper;
 import com.systemorderproducer.aplicatiton.dto.OrderProducerDto;
 import com.systemorderproducer.domain.model.OrderProducer;
 import com.systemorderproducer.domain.objectValue.IOrderProducerService;
+import com.systemorderproducer.domain.shared.GenericEntity_;
+import com.systemorderproducer.domain.shared.GenericObjectMapper;
+import com.systemorderproducer.insfrastructure.http.OrderProducerException;
 import com.systemorderproducer.insfrastructure.repositories.IOrderProducerRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -36,7 +39,7 @@ public class OrderProducerService implements IOrderProducerService {
 
     public OrderProducerDto bringByid(Integer id){
         OrderProducer orderProducer = this.IOrderProducerRepository.findById(id)
-                .orElseThrow(()-> new ObjectNotFoundException(id ,"ORDEM DE SERVICO - NÃO ENCONTRADA"));
+                .orElseThrow(()-> new OrderProducerException("ORDER PRODUCER - NÃO ENCONTRADA" , HttpStatus.NOT_FOUND));
         return  this.mapper.mapTo(orderProducer, OrderProducerDto.class);
     }
 
@@ -48,13 +51,10 @@ public class OrderProducerService implements IOrderProducerService {
         return true;
     }
 
-    public OrderProducerDto updateObject(Object obj){
-        OrderProducerDto orderProducerDto = this.mapper.mapTo(obj, OrderProducerDto.class);
-       OrderProducer newOrderProducer =  this.IOrderProducerRepository.save(
-               this.mapper.mapTo(orderProducerDto, OrderProducer.class));
-       OrderProducer serarchOrderProducer = this.IOrderProducerRepository.findById(
-               orderProducerDto.getId()).orElseThrow(()->
-               new ObjectNotFoundException(orderProducerDto.getId() ,"ORDEM DE SERVICO - NÃO ENCONTRADA"));
+    public OrderProducerDto updateObject(OrderProducerDto orderProducerDto){
+       OrderProducer newOrderProducer = this.mapper.mapTo(orderProducerDto, OrderProducer.class);
+       OrderProducer serarchOrderProducer =
+               this.mapper.mapTo(this.bringByid(newOrderProducer.getId()), OrderProducer.class);
 
         BeanUtils.copyProperties(newOrderProducer, serarchOrderProducer,
                 GenericEntity_.ID,GenericEntity_.IDENTIFY, GenericEntity_.CREATED_AT,GenericEntity_.DELIVERY_DATE);
@@ -64,7 +64,8 @@ public class OrderProducerService implements IOrderProducerService {
     }
 
     public void deleteObject(Integer id){
-        this.IOrderProducerRepository.deleteById(id);
+            this.IOrderProducerRepository.deleteById(id);
+            throw new OrderProducerException("Deletado com sucesso!", HttpStatus.ACCEPTED);
     }
 
     public OrderProducer creatObject(Object obj) {

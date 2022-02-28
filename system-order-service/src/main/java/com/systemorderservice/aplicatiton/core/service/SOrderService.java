@@ -2,6 +2,7 @@ package com.systemorderservice.aplicatiton.core.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.systemorderservice.domain.model.enums.BoxType;
 import com.systemorderservice.domain.shared.GenericEntity_;
 import com.systemorderservice.domain.shared.GenericObjectMapper;
 import com.systemorderservice.aplicatiton.dto.OrderServiceDto;
@@ -72,13 +73,11 @@ public class SOrderService implements IOrderService {
 
 
     @CacheEvict(cacheNames = "orderService", allEntries = true)
-    public OrderServiceDto updateObject(Object obj){
-        OrderServiceDto orderServiceDto =  this.mapper.mapTo(obj, OrderServiceDto.class);
-       OrderService newOrderService =  this.IOrderServiceRepository.save(
-               this.mapper.mapTo(orderServiceDto, OrderService.class));
+    public OrderServiceDto updateObject(OrderServiceDto OrderServiceDto){
+        OrderService newOrderService =  this.mapper.mapTo(OrderServiceDto, OrderService.class);
 
-       OrderService serarchOrderService = this.IOrderServiceRepository.findById(orderServiceDto.getId())
-               .orElseThrow(()-> new OrderServiceException(Message.NO_FOUND_MSG.getValue(), HttpStatus.NOT_FOUND));
+       OrderService serarchOrderService =
+               this.mapper.mapTo(this.bringByid(newOrderService.getId()), OrderService.class);
 
         BeanUtils.copyProperties(newOrderService, serarchOrderService, GenericEntity_.ID, GenericEntity_.IDENTIFY,
               GenericEntity_.CREATED_AT, GenericEntity_.DELIVERY_DATE);
@@ -89,20 +88,21 @@ public class SOrderService implements IOrderService {
     }
     public void deleteObject(Integer id){
         this.IOrderServiceRepository.deleteById(id);
+         throw  new OrderServiceException(Message.ACEPTED_DELETE.getValue(), HttpStatus.ACCEPTED);
     }
 
 
 
     @Scheduled(fixedRate = HORA)
-    public void observableTrue() throws JsonProcessingException {
+    public boolean observableTrue() throws JsonProcessingException {
         List<OrderService> shippingTrue = this.IOrderServiceRepository.findOrderServiceBy();
-
         for (OrderService ordem : shippingTrue){
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(ordem);
             jmsTemplate.convertAndSend("topc.mailbox", json);
             LOGGER.info(Message.SENDING_MSG.getValue());
         }
+        return true;
     }
 
 
@@ -110,6 +110,7 @@ public class SOrderService implements IOrderService {
         OrderService orderService = this.mapper.mapTo(obj, OrderService.class);
         orderService.setCreatedAt(LocalDateTime.now());
         orderService.setDeliveryDate(LocalDateTime.now().plusDays(10));
+        orderService.setBoxType(BoxType.BOX_SIMPLE);
         BoxBody boxBody = new BoxBody();
 
         boxBody.setLength(orderService.getBoxBody().getLength());
@@ -117,13 +118,13 @@ public class SOrderService implements IOrderService {
         boxBody.setHeight(orderService.getBoxBody().getHeight());
         boxBody.setValueLengthCalc(orderService.getBoxBody().getValueLengthCalc());
         boxBody.setValueWidthCalc(orderService.getBoxBody().getValueWidthCalc());
-        boxBody.setValueHeightCalc(orderService.getBoxBody().getValueHeightCalc());
+        boxBody.setValueHeigthCalc(orderService.getBoxBody().getValueHeigthCalc());
 
         boxBody.setDilatedLengthOne(boxBody.getValueLengthCalc() + boxBody.getLength());
         boxBody.setDilatedWidthOne(boxBody.getValueWidthCalc() + boxBody.getWidth());
         boxBody.setDilatedLengthTwo(boxBody.getValueLengthCalc() + boxBody.getLength());
-        boxBody.setDilatedWidthTwo(boxBody.getValueWidthCalc() - boxBody.getWidth());
-        boxBody.setDilatedHeight(boxBody.getValueHeightCalc() + boxBody.getHeight());
+        boxBody.setDilatedWidthTwo(boxBody.getWidth() - boxBody.getValueWidthCalc());
+        boxBody.setDilatedHeight(boxBody.getValueHeigthCalc() + boxBody.getHeight());
         boxBody.setDiletedAbasSup(boxBody.getValueAbaSup() != null ? orderService.getBoxBody().getValueAbaSup()
                 : Math.floorDiv(boxBody.getDilatedWidthOne(), 2) );
         boxBody.setDiletedAbasSub(boxBody.getValueAbaSup() != null ? boxBody.getValueAbaSup()

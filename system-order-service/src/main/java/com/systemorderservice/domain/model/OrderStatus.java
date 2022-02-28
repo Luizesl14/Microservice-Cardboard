@@ -29,13 +29,13 @@ public class OrderStatus implements Serializable {
     private String identify = UUID.randomUUID().toString();
 
     @Column(name = "statusname")
-    private String statusname;
+    private String statusName;
 
     @Column(name = "description")
     private String description;
 
     @Column(name = "hexacolor")
-    private String hexacolor;
+    private String hexaColor;
 
     @Column(name = "position")
     private Integer position;

@@ -1,9 +1,9 @@
 package com.systemorderservice.presentation.controller;
 
 
-import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
-import com.systemorderservice.domain.objectValue.IOrderServiceController;
 import com.systemorderservice.aplicatiton.core.service.StatusService;
+import com.systemorderservice.aplicatiton.dto.OrderStatusDto;
+import com.systemorderservice.domain.objectValue.valueExtends.IControllerStatus;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/status-os")
 @RequiredArgsConstructor(onConstructor = @___(@Autowired))
 @AllArgsConstructor
-public class StatusOrderSResource implements IOrderServiceController {
+public class StatusOrderSResource implements IControllerStatus {
 
 
     @Autowired
@@ -47,8 +47,8 @@ public class StatusOrderSResource implements IOrderServiceController {
     @PutMapping(value = "/update",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderStatusDto> updateObject(@RequestBody Object obj){
-        return ResponseEntity.status(HttpStatus.OK).body(this.statusService.updateObject(obj));
+    public ResponseEntity<OrderStatusDto> updateObject(@RequestBody OrderStatusDto orderStatusDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.statusService.updateObject(orderStatusDto));
     }
 
     @DeleteMapping(value = "/delete/{id}")

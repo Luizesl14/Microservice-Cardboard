@@ -15,12 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/order-service")
 public class OrderServiceController implements IOrderServiceController {
 
-    private static final String BUSCAR_TODOS ="BUSCAR TODOS";
-    private static final String BUSCAR_POR_ID ="BUSCAR POR ID";
-    private static final String SAVE ="SALVAR";
-    private static final String UPDATE ="UPDATE";
-    private static final String DELETE ="DELETE";
-
     @Autowired
     private SOrderService ServiceOrderService;
 
@@ -42,12 +36,12 @@ public class OrderServiceController implements IOrderServiceController {
     }
 
     @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderServiceDto> updateObject(@RequestBody Object obj){
-        return ResponseEntity.status(HttpStatus.OK).body(this.ServiceOrderService.updateObject(obj));
+    public ResponseEntity<OrderServiceDto> updateObject(@RequestBody OrderServiceDto orderService){
+        return ResponseEntity.status(HttpStatus.OK).body(this.ServiceOrderService.updateObject(orderService));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteObject(@RequestParam Integer id){
+    public ResponseEntity<?> deleteObject(@PathVariable Integer id){
         this.ServiceOrderService.deleteObject(id);
         return  ResponseEntity.ok().build();
     }

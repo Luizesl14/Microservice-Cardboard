@@ -42,11 +42,12 @@ public class OrderProducerController implements IOrderProducerController {
     @PutMapping(value = "/update",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderProducerDto> update(@RequestBody Object obj){
-        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.updateObject(obj));
+    public ResponseEntity<OrderProducerDto> update(@RequestBody OrderProducerDto orderProducerDto){
+        return ResponseEntity.status(HttpStatus.OK).body(this.orderProducerService.updateObject(orderProducerDto));
     }
 
-    public ResponseEntity delete(Integer id) {
+    @DeleteMapping(value ="/delete/{id}" )
+    public ResponseEntity delete(@PathVariable Integer id) {
         this.orderProducerService.deleteObject(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

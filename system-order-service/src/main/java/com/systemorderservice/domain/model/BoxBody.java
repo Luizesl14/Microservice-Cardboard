@@ -43,7 +43,7 @@ public class BoxBody implements Serializable {
 
     @NotNull
     @Column(name = "value_height_calc")
-    private Integer valueHeightCalc;
+    private Integer valueHeigthCalc;
 
     @Column(name = "value_aba_sup")
     private Integer valueAbaSup;
