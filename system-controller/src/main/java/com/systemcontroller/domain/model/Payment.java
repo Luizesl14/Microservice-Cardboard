@@ -25,11 +25,11 @@ public class Payment {
     @Column(name= "id")
     private Integer id;
 
-    @NotNull
+
     @Column(name = "name")
     private String name;
 
-    @NotNull
+
     @Column(name = "cpf")
     private String cpf;
 
@@ -47,7 +47,7 @@ public class Payment {
     @Column(name = "product_value")
     private float productValue;
 
-    @NotNull
+
     @Column(name = "approved_payment")
     private Boolean  approvedPayment;
 }

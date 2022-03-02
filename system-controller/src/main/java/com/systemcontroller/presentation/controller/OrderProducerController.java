@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.security.RolesAllowed;
 
 @RestController
-@RequestMapping("/controller-corder-producer")
+@RequestMapping("/controller-order-producer")
 public class OrderProducerController{
 
     @Autowired
     private SystemOrderProducerService systemOrderProducerService;
 
     @RolesAllowed("admin")
-    @GetMapping(value = "/all")
+    @GetMapping
     public ResponseEntity<?> findAll(Integer page, Integer pageSize){
         return ResponseEntity.status(HttpStatus.OK).body(this.systemOrderProducerService.bringAll(page, pageSize));
     }
