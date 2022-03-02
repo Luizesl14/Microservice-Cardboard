@@ -70,6 +70,8 @@ dentro  RequestBody(body) podemos alterar o atributo shippingForProduction "true
 Esse serviço principal podemos através do controller criar order-service (crud) , order-producer(crud), order(crud)
 outros demais servicos são agentes externos que não atrapalham a execução do servico;
 
+Atenção: devemos aguardar alguns minutos após a execução de todos os serviços para consumir api, todos os microserviços se registram no Discovery antes de ser utilizado;
+
 
 
 
