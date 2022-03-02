@@ -3,6 +3,7 @@ package com.systemcontroller.domain.shared;
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import java.time.LocalDateTime;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(GenericEntity.class)

@@ -86,6 +86,7 @@ public class SOrderService implements IOrderService {
             String json = objectMapper.writeValueAsString(ordem);
             jmsTemplate.convertAndSend("topc.mailbox", json);
             LOGGER.info(Message.SENDING_MSG.getValue());
+            ordem.setShippingForProduction(false);
         }
         return true;
     }

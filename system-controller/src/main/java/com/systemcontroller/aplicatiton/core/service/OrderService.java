@@ -3,6 +3,7 @@ package com.systemcontroller.aplicatiton.core.service;
 import com.systemcontroller.aplicatiton.dto.OrderDto;
 import com.systemcontroller.domain.model.Order;
 import com.systemcontroller.domain.objectValue.IOrderService;
+import com.systemcontroller.domain.objectValue.IServiceOrder;
 import com.systemcontroller.domain.shared.GenericEntity_;
 import com.systemcontroller.domain.shared.GenericObjectMapper;
 import com.systemcontroller.insfrastructure.http.OrderException;
@@ -15,8 +16,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 @Service
-public class OrderService implements IOrderService {
+public class OrderService implements IServiceOrder {
 
     private final String NO_FOUND_MSG = "Order não encontrada na base de dados";
     private final String ERROR_SERVER = "Houve um erro no servidor tente novamente mais tarde";
@@ -39,22 +43,20 @@ public class OrderService implements IOrderService {
         return  this.mapper.mapTo(order, OrderDto.class);
     }
 
-    public OrderDto saveObject(Object obj){
+    public OrderDto saveObject(OrderDto obj){
         Order order = this.mapper.mapTo(obj, Order.class);
+        order.setIdentify(UUID.randomUUID().toString());
+        order.setCreatedAt(LocalDateTime.now());
         this.orderRepository.save(order);
         return this.bringByid(order.getId());
     }
 
-    public OrderDto updateObject(Object obj){
-        OrderDto orderDto =  this.mapper.mapTo(obj, OrderDto.class);
-        Order newOrder =  this.orderRepository.save(
-                this.mapper.mapTo(orderDto, Order.class));
-
-        Order serarchOrderService = this.orderRepository.findById(orderDto.getId())
-                .orElseThrow(()-> new OrderException(NO_FOUND_MSG, HttpStatus.NOT_FOUND));
+    public OrderDto updateObject(OrderDto obj){
+        Order newOrder=  this.mapper.mapTo(obj, Order.class);
+        Order serarchOrderService = this.mapper.mapTo(this.bringByid(newOrder.getId()), Order.class);
 
         BeanUtils.copyProperties(newOrder, serarchOrderService, GenericEntity_.ID, GenericEntity_.IDENTIFY,
-                GenericEntity_.CREATED_AT, GenericEntity_.DELIVERY_DATE);
+                GenericEntity_.CREATED_AT);
 
         return this.mapper.mapTo(
                 this.orderRepository.save(newOrder), OrderDto.class);
