@@ -32,17 +32,17 @@ public class OrderServiceController {
 
 
     @RolesAllowed({"user", "admin"})
-    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(value = "/save/order/{orderId}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> save(@RequestBody OrderServiceDto orderServiceDto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.systemOrderService.saveObject(orderServiceDto));
+    public ResponseEntity<?> save(@PathVariable Integer orderId, @RequestBody OrderServiceDto orderServiceDto){
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.systemOrderService.saveObject(orderId, orderServiceDto));
     }
 
     @RolesAllowed({"user", "admin"})
-    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(value = "/update/order/{orderId}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> update(@RequestBody OrderServiceDto orderServiceDto){
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.systemOrderService.updateObject(orderServiceDto));
+    public ResponseEntity<?> update(@PathVariable Integer orderId, @RequestBody OrderServiceDto orderServiceDto){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(this.systemOrderService.updateObject(orderId, orderServiceDto));
     }
 
     @RolesAllowed({"user", "admin"})

@@ -29,7 +29,7 @@ public class Order {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @NotBlank(message = "Informe um dados do pagamento")
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id")
     private Payment payment;
