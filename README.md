@@ -40,7 +40,7 @@ criar algo diferente com proposta de aprendizado implementei as ferramentas no c
 sei que algumas dessas ferramentas as empresas AWS, AZURE, ORACLE oferecem esses serviços mais achei
 interassante aprender e apresenta-las no projeto assim como algumas ferramentas como Docker.
 
-# Cosumindo API 
+# Consumindo API 
 
 * Primeiro devemos instalar  as ferramentas Keycloack e ActiveMQ
 
